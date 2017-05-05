@@ -1,0 +1,23 @@
+<div *ngIf="spell">
+  <div md-dialog-title>{{spell.name}}</div>
+  <div md-dialog-content>
+    <p><strong>Description</strong> <span class="secondary-text" [innerHTML]="spell.desc"></span></p>
+    <p *ngIf="spell.higher_level"><strong>At higher level: </strong><span class="secondary-text" [innerHTML]="spell.higher_level"></span></p>
+    <p><strong>Level</strong> <span class="secondary-text"> {{spell.level}}</span></p>
+    <p><strong>Supported Classes:</strong> <span class="secondary-text"> {{spell.class}}</span></p>
+    <p><strong>School</strong> <span class="secondary-text"> {{spell.school}}</span></p>
+    <p><strong>Ritual?</strong> <span class="secondary-text"> {{spell.ritual}}</span></p>
+    <p><strong>Duration</strong> <span class="secondary-text"> {{spell.duration}}</span></p>
+    <p><strong>Concentration?</strong> <span class="secondary-text"> {{spell.concentration}}</span></p>
+    <p><strong>Components</strong> <span class="secondary-text"> {{spell.components}}</span></p>
+    <p><strong>Casting Time:</strong> <span class="secondary-text"> {{spell.casting_time}}</span></p>
+    <p><strong>Page</strong> <span class="secondary-text"> {{spell.page}}</span></p>
+  </div>
+  <div md-dialog-actions>
+
+    <span style="flex: 1 1 auto"></span>
+    <button md-raised-button md-dialog-close color="accent">Close</button>
+  </div>
+</div>
+
+<div *ngIf="!spell" class="loading"></div>

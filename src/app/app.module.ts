@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { AppComponent } from './app.component';
 import { MaterialModule } from '@angular/material';
@@ -13,6 +15,7 @@ import {
 import { SpellsComponent } from './spells/spells.component';
 import { SpellbookComponent } from './spellbook/spellbook.component';
 import { SpellbookService } from './shared/spellbook.service';
+import { SpellDetailDialogComponent } from './shared/spell-detail-dialog/spell-detail-dialog.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({}), http, options);
@@ -23,7 +26,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AppComponent,
         HomeComponent,
         SpellsComponent,
-        SpellbookComponent
+        SpellbookComponent,
+        SpellDetailDialogComponent
     ],
     providers: [
         appRoutingProviders,
@@ -34,10 +38,15 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         },
         SpellbookService
     ],
+    entryComponents: [
+        SpellDetailDialogComponent
+    ],
     imports: [
         BrowserModule,
         HttpModule,
+        FormsModule,
         BrowserAnimationsModule,
+        NgxDatatableModule,
         MaterialModule.forRoot(),
         routing
     ],

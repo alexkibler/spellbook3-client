@@ -26,3 +26,12 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## TODO
+* Create spellbook
+* Lookup all spellbooks by user
+* Get all spells by spellbook
+* Add spells to spellbook
+* Delete spell from spellbook
+* Admin page (Add/Edit/Delete spell, View all spellbooks, edit spellbook)

@@ -1,15 +1,15 @@
-import { ModuleWithProviders }         from '@angular/core';
-import { Routes, RouterModule }        from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent }               from './home/home.component';
-import { SpellsComponent }               from './spells/spells.component';
-import { SpellbookComponent }               from './spellbook/spellbook.component';
+import { HomeComponent } from './home/home.component';
+import { SpellsComponent } from './spells/spells.component';
+import { SpellbookComponent } from './spellbook/spellbook.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'spells', component: SpellsComponent },
-  { path: 'spellbook', component: SpellbookComponent },
+  { path: 'spellbooks', component: SpellbookComponent },
   { path: '**', redirectTo: '' }
 ];
 
