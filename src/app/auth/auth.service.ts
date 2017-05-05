@@ -1,6 +1,6 @@
-import { Injectable }      from '@angular/core';
+import { Injectable } from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
-import { myConfig }        from './auth.config';
+import { myConfig } from './auth.config';
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
@@ -9,7 +9,7 @@ declare var Auth0Lock: any;
 export class Auth {
   // Configure Auth0
   // Store profile object in auth class
-  userProfile: Object;
+  userProfile: any;
   token: string;
   lock = new Auth0Lock(myConfig.CLIENT_ID, myConfig.CLIENT_DOMAIN, {
     theme: {

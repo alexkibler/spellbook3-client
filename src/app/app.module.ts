@@ -8,6 +8,7 @@ import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { AppComponent } from './app.component';
 import { MaterialModule } from '@angular/material';
 import { HomeComponent } from './home/home.component';
+import { Auth } from './auth/auth.service';
 import {
     routing,
     appRoutingProviders
@@ -16,6 +17,7 @@ import { SpellsComponent } from './spells/spells.component';
 import { SpellbookComponent } from './spellbook/spellbook.component';
 import { SpellbookService } from './shared/spellbook.service';
 import { SpellDetailDialogComponent } from './shared/spell-detail-dialog/spell-detail-dialog.component';
+import { SpellbookListComponent } from './spellbook/spellbook-list/spellbook-list.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({}), http, options);
@@ -27,7 +29,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HomeComponent,
         SpellsComponent,
         SpellbookComponent,
-        SpellDetailDialogComponent
+        SpellDetailDialogComponent,
+        SpellbookListComponent
     ],
     providers: [
         appRoutingProviders,
@@ -36,7 +39,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
             useFactory: authHttpServiceFactory,
             deps: [Http, RequestOptions]
         },
-        SpellbookService
+        SpellbookService,
+        Auth
     ],
     entryComponents: [
         SpellDetailDialogComponent
