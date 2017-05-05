@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
@@ -47,6 +48,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ],
     imports: [
         BrowserModule,
+        FlexLayoutModule,
         HttpModule,
         FormsModule,
         BrowserAnimationsModule,

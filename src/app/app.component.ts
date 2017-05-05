@@ -6,12 +6,12 @@ import { MdDialog, MdDialogRef, MdSnackBar, MdSidenav } from '@angular/material'
 
 @Component({
   selector: 'app-root',
-  providers: [Auth],
   templateUrl: 'app.component.html'
 })
 
 export class AppComponent {
   @ViewChild('sidenav') sidenav: MdSidenav;
+  theme = 'dark';
   constructor(private auth: Auth, private http: Http, private router: Router) { }
 
   public test() {

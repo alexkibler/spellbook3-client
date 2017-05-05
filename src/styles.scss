@@ -1,46 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~normalize.css';
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/themes/dark.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 @import './assets/scss/spinner.scss';
-$primary-dark: #512DA8;
-$primary: #673AB7;
-$primary-light: #D1C4E9;
-$accent: #FFC107;
-$primary-text: #212121;
-$secondary-text: #757575;
-$divider: #BDBDBD;
+@import './assets/scss/spellbook-cards.scss';
+// @import './assets/scss/theme.scss';
+@import '~@angular/material/prebuilt-themes/purple-green.css';
 
-.primary-dark {
-  color: $primary-dark;
-}
-
-.primary {
-  color: $primary;
-}
-
-.primary-light {
-  color: $primary-light;
-}
-
-.accent {
-  color: $accent;
-}
-
-.primary-text {
-  color: $primary-text;
-}
-
-.secondary-text {
-  color: $secondary-text;
-}
-
-.divider {
-  color: $divider;
-}
 
 html, body, material-app, md-sidenav-container, .my-content {
   margin: 0;

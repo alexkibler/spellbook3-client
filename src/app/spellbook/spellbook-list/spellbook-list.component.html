@@ -1,7 +1,23 @@
-<h3>Your spellbooks:</h3>
-<md-list>
-  <md-list-item *ngFor="let spellbook of spellbooks">
-    <md-icon md-list-icon>book</md-icon>
-    <h4 md-line>{{spellbook.name}}</h4>
-  </md-list-item>
-</md-list>
+<h2>Your Spellbooks:</h2>
+<div class="container" fxLayout="row">
+<md-card class="spellbook-card" *ngFor="let sb of spellbooks">
+  <md-card-header>
+    <div md-card-avatar [class]="'spellbook-'+sb.class+'-image'"></div>
+    <md-card-title>{{sb.name}}</md-card-title>
+    <md-card-subtitle style="text-transform:capitalize">{{sb.class}}</md-card-subtitle>
+  </md-card-header>
+  <img md-card-image width="300" [src]="sb.imageUrl">
+  <md-card-content>
+    <p>
+      {{sb.description}}
+    </p>
+  </md-card-content>
+  <md-card-actions>
+    <div fxLayout="row" fxLayoutAlign="center stretch">
+    <button md-raised-button color="accent" fxFlex>View CS</button>
+    <button md-raised-button color="accent" fxFlex>Edit</button>
+    <button md-raised-button color="accent" fxFlex>Delete</button>
+    </div>
+  </md-card-actions>
+</md-card>
+</div>

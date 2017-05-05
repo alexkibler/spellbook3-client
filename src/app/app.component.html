@@ -1,5 +1,5 @@
-<md-sidenav-container>
-  <md-toolbar color="accent">
+<md-sidenav-container [class]="theme" >
+  <md-toolbar color="primary">
     <span routerLink="/">Spellbook v3</span>
     <span style="flex: 1 1 auto"></span>
     <span>
@@ -9,15 +9,14 @@
   </span>
 
   </md-toolbar>
-  <md-sidenav #sidenav align="end">
+  <md-sidenav #sidenav align="end" fxLayout="column" fxLayoutAlign="start stretch">
     <br/>
     <span style="margin: 17px">{{auth?.userProfile?.name}}</span> <br />
-    <button md-button (click)="nav('spells')"> All Spells </button> <br />
-    <button md-button (click)="nav('login')" *ngIf="!auth.authenticated()">Log In</button>
-    <button md-button (click)="nav('spellbooks')" *ngIf="auth.authenticated()"> My Spellbooks </button> <br />
-    <button md-button (click)="nav('logout')" *ngIf="auth.authenticated()">Log Out</button>
+    <button md-raised-button color="primary" (click)="nav('spells')"> All Spells </button> <br />
+    <button md-raised-button color="primary" (click)="nav('login')" *ngIf="!auth.authenticated()">Log In</button>
+    <button md-raised-button color="primary" (click)="nav('spellbooks')" *ngIf="auth.authenticated()"> My Spellbooks </button> <br />
+    <button md-raised-button color="primary" (click)="nav('logout')" *ngIf="auth.authenticated()">Log Out</button>
   </md-sidenav>
-
-
+  
   <router-outlet></router-outlet>
 </md-sidenav-container>
