@@ -1,3 +1,24 @@
-<h1>
-  {{title}}
-</h1>
+<md-toolbar color="primary">
+  <span>Spellbook v3</span>
+  <span style="flex: 1 1 auto"></span>
+  <span>
+      <button md-button (click)="sidenav.open()">
+        <md-icon>menu</md-icon>
+      </button>
+  </span>
+
+</md-toolbar>
+
+
+<md-sidenav-container>
+  <md-sidenav #sidenav align="end">
+      <span>{{auth?.userProfile?.name}}</span> <br />
+      <button md-button routerLink="/spells"> All Spells </button> <br />
+      <button md-button (click)="login()" *ngIf="!auth.authenticated()">Log In</button>
+      <button md-button routerLink="/spellbook" *ngIf="auth.authenticated()"> My Spellbooks </button> <br />
+      <button md-button (click)="auth.logout()"  *ngIf="auth.authenticated()">Log Out</button>
+  </md-sidenav>
+
+    
+  <router-outlet></router-outlet>
+</md-sidenav-container>
