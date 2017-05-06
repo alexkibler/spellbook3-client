@@ -6,8 +6,8 @@
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 @import './assets/scss/spinner.scss';
 @import './assets/scss/spellbook-cards.scss';
-// @import './assets/scss/theme.scss';
-@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import './assets/scss/theme.scss';
+// @import '~@angular/material/prebuilt-themes/purple-green.css';
 
 
 html, body, material-app, md-sidenav-container, .my-content {
@@ -18,3 +18,15 @@ html, body, material-app, md-sidenav-container, .my-content {
   font-size:16px !important;
 }
 
+.mat-dialog-title, .mat-dialog-content {
+  color: #FFF !important;
+}
+
+.edit-dialog {
+  width:300px;
+}
+
+.mat-select {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}

@@ -19,6 +19,7 @@ import { SpellbookComponent } from './spellbook/spellbook.component';
 import { SpellbookService } from './shared/spellbook.service';
 import { SpellDetailDialogComponent } from './shared/spell-detail-dialog/spell-detail-dialog.component';
 import { SpellbookListComponent } from './spellbook/spellbook-list/spellbook-list.component';
+import { SpellbookEditComponent } from './spellbook/spellbook-edit/spellbook-edit.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({}), http, options);
@@ -31,7 +32,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         SpellsComponent,
         SpellbookComponent,
         SpellDetailDialogComponent,
-        SpellbookListComponent
+        SpellbookListComponent,
+        SpellbookEditComponent
     ],
     providers: [
         appRoutingProviders,
@@ -44,7 +46,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         Auth
     ],
     entryComponents: [
-        SpellDetailDialogComponent
+        SpellDetailDialogComponent,
+        SpellbookEditComponent
     ],
     imports: [
         BrowserModule,

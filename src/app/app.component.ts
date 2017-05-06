@@ -36,7 +36,7 @@ export class AppComponent {
           this.router.navigateByUrl('/spells');
           break;
         case 'spellbooks':
-          this.router.navigateByUrl('/spellbooks');
+          this.router.navigateByUrl('/spellbooks/list');
           break;
         case 'login':
           this.login();
