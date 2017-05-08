@@ -30,3 +30,19 @@ html, body, material-app, md-sidenav-container, .my-content {
   margin-bottom: 15px;
   margin-top: 15px;
 }
+
+.datatable-header {
+  padding-left: 10px;
+}
+.ngx-datatable .datatable-header {
+  height: 50px !important;
+  font-size:2em;
+    border-bottom: 1px solid #ddd;
+}
+
+.datatable-body-row {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+

@@ -20,16 +20,6 @@ export class AppComponent {
     });
   }
 
-  public test() {
-    let headers: Headers = new Headers();
-    headers.append('Authorization', 'Bearer ' + this.auth.token);
-    headers.append('asdfsadf', 'Bearer ' + this.auth.token);
-    let options = new RequestOptions({ headers: headers });
-    this.http.get('../assets/tsconfig.app.json', options).subscribe(x => {
-      console.log(x);
-    });
-  }
-
   public login() {
     this.router.navigateByUrl('/');
     this.auth.login();
