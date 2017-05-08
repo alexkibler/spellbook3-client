@@ -31,18 +31,31 @@ html, body, material-app, md-sidenav-container, .my-content {
   margin-top: 15px;
 }
 
-.datatable-header {
-  padding-left: 10px;
-}
-.ngx-datatable .datatable-header {
-  height: 50px !important;
-  font-size:2em;
-    border-bottom: 1px solid #ddd;
-}
-
-.datatable-body-row {
-    padding: 15px;
+.data-cell {
     text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
     border-bottom: 1px solid #ddd;
+    vertical-align: bottom;
 }
 
+.table {
+  margin: 0;
+  width:100%;
+  height:100%;
+}
+
+th {
+  font-size:2em;
+}
+th {
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: bottom;
+}
+
+
+
+tr:hover {background-color: #444}

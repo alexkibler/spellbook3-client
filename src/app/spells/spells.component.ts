@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
-
+import * as _ from 'lodash';
 import { SpellbookService } from '../shared/spellbook.service';
 import { SpellDetailDialogComponent } from '../shared/spell-detail-dialog/spell-detail-dialog.component';
 
@@ -11,6 +11,8 @@ import { SpellDetailDialogComponent } from '../shared/spell-detail-dialog/spell-
 })
 export class SpellsComponent implements OnInit {
   public spells: any[];
+  public sortOrder = 'name';
+  public sortAsc = true;
   private temp: any[];
   private nameFilter: string;
   private classFilter: string;
@@ -28,17 +30,56 @@ export class SpellsComponent implements OnInit {
     this.spellbookService.getSpells().subscribe(s => {
       this.spells = s;
       this.temp = [...s];
+      this.sort();
     });
   }
 
-  onSelect({ row }) {
-    console.log(row.id);
+  onSelect(spell) {
+    console.log(spell.id);
     const dialogRef = this.dialog.open(SpellDetailDialogComponent);
-    dialogRef.componentInstance.id = row.id;
+    dialogRef.componentInstance.id = spell.id;
   }
 
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
+  add(s) {
+    alert('placebo!');
+  }
+
+  remove(s) {
+    alert('placebo!');
+  }
+
+  changeSort(name) {
+    if (this.sortOrder === name) {
+      this.sortAsc = !this.sortAsc;
+    } else {
+      this.sortOrder = name;
+      this.sortAsc = true;
+    }
+
+    this.sort();
+  }
+
+  filter(type, val) {
+    switch (type) {
+      case 'name':
+        this.nameFilter = val;
+        break;
+      case 'level':
+        this.levelFilter = val;
+        break;
+      case 'class':
+        this.classFilter = val;
+        break;
+    }
+
+    this.updateFilter();
+  }
+
+  sort() {
+    this.spells = _.orderBy(this.spells, [this.sortOrder], [this.sortAsc ? 'asc' : 'desc']);
+  }
+
+  updateFilter() {
     const nameFilter = this.nameFilter;
     const levelFilter = this.levelFilter;
     const classFilter = this.classFilter;
