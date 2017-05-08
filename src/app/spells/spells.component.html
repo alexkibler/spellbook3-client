@@ -5,22 +5,22 @@
     </md-slide-toggle>
     <table class="table">
         <thead>
-            <th (click)="changeSort('name')">
+            <th (click)="changeSort('name')" style="width:50%">
                 Name
                 <span *ngIf="sortOrder==='name' && sortAsc"><md-icon>arrow_upward</md-icon></span>
                 <span *ngIf="sortOrder==='name' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
             </th>
-            <th (click)="changeSort('level')">
+            <th (click)="changeSort('level')" style="width:10%">
                 Level
                 <span *ngIf="sortOrder==='level' && sortAsc"><md-icon>arrow_upward</md-icon></span>
                 <span *ngIf="sortOrder==='level' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
             </th>
-            <th (click)="changeSort('class')">
+            <th (click)="changeSort('class')" style="width:30%">
                 Class
                 <span *ngIf="sortOrder==='class' && sortAsc"><md-icon>arrow_upward</md-icon></span>
                 <span *ngIf="sortOrder==='class' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
             </th>
-            <th *ngIf="selectedSpellbook?.spellbookId">
+            <th *ngIf="selectedSpellbook?.spellbookId" style="width:10%">
             </th>
         </thead>
         <tbody>
