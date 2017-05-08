@@ -4,7 +4,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { AppComponent } from './app.component';
 import { MaterialModule } from '@angular/material';
@@ -59,7 +58,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        NgxDatatableModule,
         MaterialModule.forRoot(),
         routing
     ],

@@ -91,13 +91,13 @@ export class SpellsComponent implements OnInit {
   filter(type, val) {
     switch (type) {
       case 'name':
-        this.nameFilter = val;
+        this.nameFilter = val.toLowerCase();
         break;
       case 'level':
         this.levelFilter = val;
         break;
       case 'class':
-        this.classFilter = val;
+        this.classFilter = val.toLowerCase();
         break;
       case 'sbOnly':
         this.spellbookOnly = val;
