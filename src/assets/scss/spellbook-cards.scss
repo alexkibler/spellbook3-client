@@ -1,6 +1,8 @@
 .spellbook-card {
   width: 300px;
-  margin:15px;
+  display: flex !important;
+  flex-direction: column !important;
+  margin:20px !important;
 }
 
 

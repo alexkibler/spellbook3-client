@@ -8,7 +8,7 @@ import { SpellbookListComponent } from './spellbook/spellbook-list/spellbook-lis
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'spells', pathMatch: 'full' },
   { path: 'spells', component: SpellsComponent },
   {
     path: 'spellbooks',
