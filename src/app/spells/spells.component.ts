@@ -73,6 +73,7 @@ export class SpellsComponent implements OnInit {
     }
 
     this.updateFilter();
+    this.sort();
   }
 
   sort() {
