@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SpellbookService } from '../../shared/spellbook.service';
 import { Auth } from '../../auth/auth.service';
 import { MdDialog } from '@angular/material';
@@ -11,7 +12,7 @@ import { SpellbookDeleteComponent } from '../spellbook-delete/spellbook-delete.c
 })
 export class SpellbookListComponent implements OnInit {
   spellbooks: any[];
-  constructor(private sbs: SpellbookService, private auth: Auth, public dialog: MdDialog) { }
+  constructor(private sbs: SpellbookService, private auth: Auth, public dialog: MdDialog, private router: Router) { }
 
   ngOnInit() {
     this.getSpellbooks();
@@ -25,7 +26,11 @@ export class SpellbookListComponent implements OnInit {
     });
   }
   spells(sb: any) {
-    this.sbs.setSpellbook(sb);
+    const sub = this.sbs.getSpellbook(sb.spellbookId).subscribe(s => {
+      sub.unsubscribe();
+      this.sbs.setSpellbook(s);
+      this.router.navigateByUrl('/spells');
+    });
   }
   add() {
     const dialogRef = this.dialog.open(SpellbookEditComponent);

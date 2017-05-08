@@ -17,8 +17,20 @@ export class SpellbookService {
     return this.http.get('http://spellbookapi.alexkibler.com/spells/GetSpellList').map((response) => response.json());
   }
 
+  getSpellbook(id) {
+    return this.http.get(`http://spellbookapi.alexkibler.com/spellbooks/${id}`).map((response) => response.json());
+  }
+
   getSpell(id: number) {
     return this.http.get(`http://spellbookapi.alexkibler.com/spells/${id}`).map((response) => response.json());
+  }
+
+  addSpell(spellbookspell) {
+    return this.http.post('http://spellbookapi.alexkibler.com/spellbooks/addspell', spellbookspell).map((response) => response.json());
+  }
+
+  deleteSpellFromSpellbook(spellbookspell) {
+    return this.http.post('http://spellbookapi.alexkibler.com/spellbooks/DeleteSpell', spellbookspell);
   }
 
   getSpellbooksByUserId(userId: string) {

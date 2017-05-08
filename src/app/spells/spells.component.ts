@@ -13,10 +13,12 @@ export class SpellsComponent implements OnInit {
   public spells: any[];
   public sortOrder = 'name';
   public sortAsc = true;
+  public spellbookOnly = false;
   private temp: any[];
   private nameFilter: string;
   private classFilter: string;
   public levelFilter: string;
+  public selectedSpellbook;
   private columns = [
     { prop: 'id' },
     { prop: 'name' },
@@ -32,6 +34,21 @@ export class SpellsComponent implements OnInit {
       this.temp = [...s];
       this.sort();
     });
+    this.selectedSpellbook = this.spellbookService.selectedSpellbook.getValue();
+    this.spellbookService.selectedSpellbook.subscribe(x => {
+      this.selectedSpellbook = x;
+    });
+  }
+
+  isSelected(spellId) {
+    if (this.selectedSpellbook && this.selectedSpellbook.spells) {
+      for (let i = 0; i < this.selectedSpellbook.spells.length; i++) {
+        if (this.selectedSpellbook.spells[i].id === spellId) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   onSelect(spell) {
@@ -40,12 +57,24 @@ export class SpellsComponent implements OnInit {
     dialogRef.componentInstance.id = spell.id;
   }
 
-  add(s) {
-    alert('placebo!');
+  add(id) {
+    const sub = this.spellbookService.addSpell({spellbookId: this.selectedSpellbook.spellbookId, spellId: id}).subscribe(r => {
+      sub.unsubscribe();
+      const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
+        sub2.unsubscribe();
+        this.spellbookService.setSpellbook(s);
+      });
+    });
   }
 
-  remove(s) {
-    alert('placebo!');
+  remove(id) {
+    const sub = this.spellbookService.deleteSpellFromSpellbook({spellbookId: this.selectedSpellbook.spellbookId, spellId: id}).subscribe(() => {
+      sub.unsubscribe();
+      const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
+        sub2.unsubscribe();
+        this.spellbookService.setSpellbook(s);
+      });
+    });
   }
 
   changeSort(name) {
@@ -70,6 +99,8 @@ export class SpellsComponent implements OnInit {
       case 'class':
         this.classFilter = val;
         break;
+      case 'sbOnly':
+        this.spellbookOnly = val;
     }
 
     this.updateFilter();
@@ -86,6 +117,9 @@ export class SpellsComponent implements OnInit {
     const classFilter = this.classFilter;
     // filter our data
     let temp = this.temp;
+    if (this.spellbookOnly) {
+      temp = this.temp.filter(x => this.isSelected(x.id));
+    }
     if (nameFilter) {
     temp = temp.filter(function(d) {
       return d.name.toLowerCase().indexOf(nameFilter) !== -1 || !nameFilter;

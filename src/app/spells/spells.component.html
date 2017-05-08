@@ -29,7 +29,7 @@
     <table class="table">
         <thead>
             <th (click)="changeSort('name')">
-                Name 
+                Name
                 <span *ngIf="sortOrder==='name' && sortAsc"><md-icon>arrow_upward</md-icon></span>
                 <span *ngIf="sortOrder==='name' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
             </th>
@@ -43,8 +43,10 @@
                 <span *ngIf="sortOrder==='class' && sortAsc"><md-icon>arrow_upward</md-icon></span>
                 <span *ngIf="sortOrder==='class' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
             </th>
-            <th style="width:10%">
-
+            <th style="width:10%" *ngIf="selectedSpellbook?.spellbookId">
+                <md-slide-toggle class="example-margin" #toggle (click)="filter('sbOnly', !toggle.checked)">
+                    Spellbook Only? 
+                </md-slide-toggle>
             </th>
         </thead>
         <tbody>
@@ -64,19 +66,21 @@
                         <input mdInput placeholder="Filter by class" #class (keyup)="filter('class', class.value)">
                     </md-input-container>
                 </td>
-                <td></td>
+                <td *ngIf="selectedSpellbook?.spellbookId"></td>
             </tr>
             <tr *ngFor="let s of spells">
                 <td class="data-cell" (click)="onSelect(s)">{{s.name}}</td>
                 <td class="data-cell" (click)="onSelect(s)">{{s.level}}</td>
                 <td class="data-cell" (click)="onSelect(s)">{{s.class}}</td>
-                <td class="data-cell" style="text-align: center !important">
-                    <a md-mini-fab color="primary" (click)="add(s)">
-                        <md-icon>add</md-icon>
-                    </a>
-                    <a md-mini-fab color="warn" (click)="remove(s)">
-                        <md-icon>remove</md-icon>
-                    </a>
+                <td class="data-cell" style="text-align: center !important" *ngIf="selectedSpellbook?.spellbookId">
+                    <div>
+                        <a md-mini-fab color="primary" *ngIf="!isSelected(s.id)" (click)="add(s.id)">
+                            <md-icon>add</md-icon>
+                        </a>
+                        <a md-mini-fab color="warn" *ngIf="isSelected(s.id)" (click)="remove(s.id)">
+                            <md-icon>remove</md-icon>
+                        </a>
+                    </div>
                 </td>
             </tr>
         </tbody>

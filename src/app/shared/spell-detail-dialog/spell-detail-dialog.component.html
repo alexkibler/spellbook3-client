@@ -16,8 +16,8 @@
   <div md-dialog-actions>
 
     <span style="flex: 1 1 auto"></span>
-    <button md-raised-button md-dialog-close color="primary">Add</button>
-    <button md-raised-button md-dialog-close color="warn">Remove</button>
+    <button md-raised-button color="primary" (click)="add()" *ngIf="selectedSpellbook?.spellbookId && !isSelected(spell)">Add</button>
+    <button md-raised-button color="warn" (click)="remove()" *ngIf="isSelected()">Remove</button>
     <button md-raised-button md-dialog-close color="accent">Close</button>
   </div>
 </div>
