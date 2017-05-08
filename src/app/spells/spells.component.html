@@ -10,12 +10,12 @@
                 <span *ngIf="sortOrder==='name' && sortAsc"><md-icon>arrow_upward</md-icon></span>
                 <span *ngIf="sortOrder==='name' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
             </th>
-            <th (click)="changeSort('level')" style="width:10%">
+            <th (click)="changeSort('level')" style="width:15%">
                 Level
                 <span *ngIf="sortOrder==='level' && sortAsc"><md-icon>arrow_upward</md-icon></span>
                 <span *ngIf="sortOrder==='level' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
             </th>
-            <th (click)="changeSort('class')" style="width:30%">
+            <th (click)="changeSort('class')" style="width:25%">
                 Class
                 <span *ngIf="sortOrder==='class' && sortAsc"><md-icon>arrow_upward</md-icon></span>
                 <span *ngIf="sortOrder==='class' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
