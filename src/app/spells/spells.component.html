@@ -1,31 +1,10 @@
-<div *ngIf="spells" style="margin:15px">
-    <!--<div fxLayout="row">
-        <input fxFlex type='text' style='padding:8px;width:30%;' placeholder='Search by name' [(ngModel)]="nameFilter" (keyup)='updateFilter($event)'
-        />
-        <input fxFlex type='text' style='padding:8px;width:30%;' placeholder='Search by class' [(ngModel)]="classFilter" (keyup)='updateFilter($event)'
-        />
-        <input fxFlex type='text' style='padding:8px;width:30%;' placeholder='Search by level' [(ngModel)]="levelFilter" (keyup)='updateFilter($event)'
-        />
+<div *ngIf="spells" style="margin:15px;">
+    <div *ngIf="selectedSpellbook?.spells?.length > 0">
+        <h3>Selected: {{selectedSpellbook?.name}}</h3>
+        <md-slide-toggle class="example-margin" #toggle (click)="filter('sbOnly', !toggle.checked)">
+            Show selected spells only?
+        </md-slide-toggle>
     </div>
-    <ngx-datatable class="fullscreen" columnMode="flex" trackbyProp="id" [sorts]="[{prop: 'name', dir: 'asc'}]" [rows]="spells"
-        [rowHeight]="'auto'" (activate)='onSelect($event)'>
-        <ngx-datatable-column name="Name" [flexGrow]="3" canAutoResize="true">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Class" [flexGrow]="3">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Level" [flexGrow]="3">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{value}}
-            </ng-template>
-        </ngx-datatable-column>
-    </ngx-datatable>
-</div>-->
     <table class="table">
         <thead>
             <th (click)="changeSort('name')">
@@ -43,10 +22,7 @@
                 <span *ngIf="sortOrder==='class' && sortAsc"><md-icon>arrow_upward</md-icon></span>
                 <span *ngIf="sortOrder==='class' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
             </th>
-            <th style="width:10%" *ngIf="selectedSpellbook?.spellbookId">
-                <md-slide-toggle class="example-margin" #toggle (click)="filter('sbOnly', !toggle.checked)">
-                    Spellbook Only? 
-                </md-slide-toggle>
+            <th *ngIf="selectedSpellbook?.spellbookId">
             </th>
         </thead>
         <tbody>
