@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +20,7 @@ import { SpellbookService } from './shared/spellbook.service';
 import { SpellDetailDialogComponent } from './shared/spell-detail-dialog/spell-detail-dialog.component';
 import { SpellbookListComponent } from './spellbook/spellbook-list/spellbook-list.component';
 import { SpellbookEditComponent } from './spellbook/spellbook-edit/spellbook-edit.component';
+import { SpellbookDeleteComponent } from './spellbook/spellbook-delete/spellbook-delete.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({}), http, options);
@@ -33,7 +34,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         SpellbookComponent,
         SpellDetailDialogComponent,
         SpellbookListComponent,
-        SpellbookEditComponent
+        SpellbookEditComponent,
+        SpellbookDeleteComponent
     ],
     providers: [
         appRoutingProviders,
@@ -47,13 +49,15 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ],
     entryComponents: [
         SpellDetailDialogComponent,
-        SpellbookEditComponent
+        SpellbookEditComponent,
+        SpellbookDeleteComponent
     ],
     imports: [
         BrowserModule,
         FlexLayoutModule,
         HttpModule,
         FormsModule,
+        ReactiveFormsModule,
         BrowserAnimationsModule,
         NgxDatatableModule,
         MaterialModule.forRoot(),

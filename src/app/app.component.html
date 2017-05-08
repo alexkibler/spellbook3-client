@@ -3,6 +3,10 @@
     <span routerLink="/">Spellbook v3</span>
     <span style="flex: 1 1 auto"></span>
     <span>
+      <span *ngIf="sb && sb.name">
+        Selected spellbook: {{sb?.name}}. <span routerLink="/spells" style="text-decoration: underline; cursor: pointer">View Spells</span>
+      </span>
+      
       <button md-button (click)="sidenav.open()">
         <md-icon>menu</md-icon>
       </button>
@@ -11,7 +15,7 @@
   </md-toolbar>
   <md-sidenav #sidenav align="end" fxLayout="column" fxLayoutAlign="start stretch">
     <br/>
-    <span style="margin: 17px">{{auth?.userProfile?.name}}</span> <br />
+    <span style="margin: 17px" *ngIf="auth.authenticated()">{{auth?.userProfile?.name}}</span> <br />
     <button md-raised-button color="primary" (click)="nav('spells')"> All Spells </button> <br />
     <button md-raised-button color="primary" (click)="nav('login')" *ngIf="!auth.authenticated()">Log In</button>
     <button md-raised-button color="primary" (click)="nav('spellbooks')" *ngIf="auth.authenticated()"> My Spellbooks </button> <br />

@@ -1,22 +1,22 @@
 <div class="edit-dialog">
-  <div md-dialog-title>{{sb.name}}</div>
+  <div md-dialog-title>{{sb?.name || 'New Character'}}</div>
   <div md-dialog-content>
-    <form #form="ngForm" (ngSubmit)="update(form)" fxLayout="column">
+    <form [formGroup]="form" (ngSubmit)="update(form)" fxLayout="column">
       <md-input-container color="accent">
-        <input mdInput placeholder="Name" [value]="sb.name" required>
+        <input mdInput placeholder="Name" formControlName="name" required>
       </md-input-container>
       <md-input-container color="accent">
-        <textarea mdInput placeholder="Description" [value]="sb.description"></textarea>
+        <textarea mdInput placeholder="Description" formControlName="description"></textarea>
       </md-input-container>
-      <md-select placeholder="Class" color="accent" [(ngModel)]="sb.class" [ngModelOptions]="{standalone: true}" required>
+      <md-select placeholder="Class" color="accent" formControlName="class" required>
         <md-option *ngFor="let class of classes" [value]="class" style="text-transform: capitalize">{{ class }}</md-option>
       </md-select>
+      <!--<md-input-container color="accent">
+        <input mdInput placeholder="Image URL" formControlName="imageUrl">
+      </md-input-container>-->
       <md-input-container color="accent">
-        <input mdInput placeholder="Image URL" [value]="sb.imageUrl">
+        <input mdInput placeholder="Character Sheet URL" formControlName="characterSheetUrl">
       </md-input-container>
-      <md-input-container color="accent">
-        <input mdInput placeholder="Character Sheet URL" [value]="sb.characterSheetUrl">
-      </md-input-container>
-      <button md-raised-button color="pr">Submit</button>
+      <button md-raised-button color="accent">Submit</button>
     </form>
   </div>

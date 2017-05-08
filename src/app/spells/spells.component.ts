@@ -10,7 +10,7 @@ import { SpellDetailDialogComponent } from '../shared/spell-detail-dialog/spell-
   styleUrls: ['./spells.component.css']
 })
 export class SpellsComponent implements OnInit {
-  private spells: any[];
+  public spells: any[];
   private temp: any[];
   private nameFilter: string;
   private classFilter: string;
@@ -33,7 +33,7 @@ export class SpellsComponent implements OnInit {
 
   onSelect({ row }) {
     console.log(row.id);
-    const dialogRef = this.dialog.open(SpellDetailDialogComponent, );
+    const dialogRef = this.dialog.open(SpellDetailDialogComponent);
     dialogRef.componentInstance.id = row.id;
   }
 
@@ -43,17 +43,30 @@ export class SpellsComponent implements OnInit {
     const levelFilter = this.levelFilter;
     const classFilter = this.classFilter;
     // filter our data
-    let temp = this.temp.filter(function(d) {
+    let temp = this.temp;
+    if (nameFilter) {
+    temp = temp.filter(function(d) {
       return d.name.toLowerCase().indexOf(nameFilter) !== -1 || !nameFilter;
     });
-
+    }
+    if (classFilter) {
     temp = temp.filter(function(d) {
       return d.class.toLowerCase().indexOf(classFilter) !== -1 || !classFilter;
     });
+    }
 
+    if (levelFilter) {
     temp = temp.filter(function(d) {
       return d.level.toLowerCase().indexOf(levelFilter) !== -1 || !levelFilter;
     });
+    }
+    // const filter = { name: nameFilter, level: levelFilter, class: classFilter };
+    // const temp = this.temp.filter(item => {
+    //   const notMatchingField = Object.keys(filter)
+    //     .find(key => item[key] !== filter[key]);
+
+    //   return !notMatchingField; // true if matches all fields
+    // });
 
 
     // update the rows

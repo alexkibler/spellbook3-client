@@ -1,0 +1,8 @@
+<div class="edit-dialog">
+  <h1 md-dialog-title>Delete</h1>
+  <div md-dialog-content>Are you sure you would like to delete this spellbook? This cannot be undone</div>
+  <div md-dialog-actions fxLayout="row" fxLayoutAlign="center stretch">
+    <button md-raised-button color="accent" (click)="dialogRef.close('yes')" fxFlex style="margin-right:5px">Delete</button>
+    <button md-raised-button color="accent" (click)="dialogRef.close('no')" fxFlex style="margin-left:5px">Cancel</button>
+  </div>
+</div>

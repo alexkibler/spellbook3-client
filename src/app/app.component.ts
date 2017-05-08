@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Auth } from './auth/auth.service';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { MdDialog, MdDialogRef, MdSnackBar, MdSidenav } from '@angular/material';
+import { SpellbookService } from './shared/spellbook.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,12 @@ import { MdDialog, MdDialogRef, MdSnackBar, MdSidenav } from '@angular/material'
 export class AppComponent {
   @ViewChild('sidenav') sidenav: MdSidenav;
   theme = 'dark';
-  constructor(private auth: Auth, private http: Http, private router: Router) { }
+  sb: any;
+  constructor(public auth: Auth, private http: Http, private router: Router, private sbs: SpellbookService) { 
+    this.sbs.selectedSpellbook.subscribe(s => {
+      this.sb = s;
+    });
+  }
 
   public test() {
     let headers: Headers = new Headers();
