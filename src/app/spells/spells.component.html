@@ -1,4 +1,4 @@
-<div *ngIf="spells">
+<div *ngIf="spells" style="margin:15px">
     <!--<div fxLayout="row">
         <input fxFlex type='text' style='padding:8px;width:30%;' placeholder='Search by name' [(ngModel)]="nameFilter" (keyup)='updateFilter($event)'
         />
@@ -28,10 +28,24 @@
 </div>-->
     <table class="table">
         <thead>
-            <th (click)="changeSort('name')">Name</th>
-            <th (click)="changeSort('level')">Level</th>
-            <th (click)="changeSort('class')">Class</th>
-            <th></th>
+            <th (click)="changeSort('name')">
+                Name 
+                <span *ngIf="sortOrder==='name' && sortAsc"><md-icon>arrow_upward</md-icon></span>
+                <span *ngIf="sortOrder==='name' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
+            </th>
+            <th (click)="changeSort('level')">
+                Level
+                <span *ngIf="sortOrder==='level' && sortAsc"><md-icon>arrow_upward</md-icon></span>
+                <span *ngIf="sortOrder==='level' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
+            </th>
+            <th (click)="changeSort('class')">
+                Class
+                <span *ngIf="sortOrder==='class' && sortAsc"><md-icon>arrow_upward</md-icon></span>
+                <span *ngIf="sortOrder==='class' && !sortAsc"><md-icon>arrow_downward</md-icon></span>
+            </th>
+            <th style="width:10%">
+
+            </th>
         </thead>
         <tbody>
             <tr>
