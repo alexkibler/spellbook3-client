@@ -1,24 +1,24 @@
-<h2>Your Spellbooks:</h2>
-<button md-raised-button color="primary" (click)="add()">Add Spellbook</button>
-<div class="container" fxLayout="row">
-<md-card class="spellbook-card" *ngFor="let sb of spellbooks">
-  <md-card-header>
-    <div md-card-avatar [class]="'spellbook-'+sb.class+'-image'"></div>
-    <md-card-title>{{sb.name}}</md-card-title>
-    <md-card-subtitle style="text-transform:capitalize">{{sb.class}}</md-card-subtitle>
-  </md-card-header>
-  <!--<img md-card-image width="300" src="assets/icons/barbarian.jpg">-->
-  <md-card-content>
-    <p>
-      {{sb.description}}
-    </p>
-  </md-card-content>
-  <md-card-actions>
-    <div fxLayout="row" fxLayoutAlign="center stretch">
-    <button md-raised-button color="accent" fxFlex (click)="spells(sb)">View Spells</button>
-    <button md-raised-button color="accent" fxFlex (click)="edit(sb)">Edit</button>
-    <button md-raised-button color="accent" fxFlex (click)="delete(sb.spellbookId)">Delete</button>
-    </div>
-  </md-card-actions>
-</md-card>
+<h2 style="margin:20px">Your Spellbooks:</h2>
+<button md-raised-button color="primary" (click)="add()" style="margin:10px">Add Spellbook</button>
+<div style="width:100%" fxLayout="row" fxLayoutWrap fxLayoutGap="10px">
+  <md-card class="spellbook-card" *ngFor="let sb of spellbooks" fxFlex>
+    <md-card-header>
+      <div md-card-avatar [class]="'spellbook-'+sb.class+'-image'"></div>
+      <md-card-title>{{sb.name}}</md-card-title>
+      <md-card-subtitle style="text-transform:capitalize">{{sb.class}}</md-card-subtitle>
+    </md-card-header>
+    <!--<img md-card-image width="300" src="assets/icons/barbarian.jpg">-->
+    <md-card-content>
+      <p>
+        {{sb.description}}
+      </p>
+    </md-card-content>
+    <md-card-actions>
+      <div fxLayout="row" fxLayoutAlign="center stretch">
+      <button md-raised-button color="accent" fxFlex (click)="spells(sb)">View Spells</button>
+      <button md-raised-button color="accent" fxFlex (click)="edit(sb)">Edit</button>
+      <button md-raised-button color="accent" fxFlex (click)="delete(sb.spellbookId)">Delete</button>
+      </div>
+    </md-card-actions>
+  </md-card>
 </div>
