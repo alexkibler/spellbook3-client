@@ -28,7 +28,12 @@ export class SpellbookEditComponent implements OnInit {
     'warlock',
     'wizard'
   ];
-  constructor(private sbs: SpellbookService, private fb: FormBuilder, public dialogRef: MdDialogRef<SpellbookEditComponent>, public auth: Auth) { }
+  constructor(
+    private sbs: SpellbookService,
+    private fb: FormBuilder,
+    public dialogRef: MdDialogRef<SpellbookEditComponent>,
+    public auth: Auth
+  ) { }
 
   ngOnInit() {
     let spellbookCopy: any = {};

@@ -1,25 +1,84 @@
-<div *ngIf="spell">
+<form [formGroup]="form" (ngSubmit)="update(form)">
   <div md-dialog-title>{{spell.name}}</div>
   <div md-dialog-content>
-    <p><strong>Description</strong> <span class="secondary-text" [innerHTML]="spell.desc"></span></p>
-    <p *ngIf="spell.higher_level"><strong>At higher level: </strong><span class="secondary-text" [innerHTML]="spell.higher_level"></span></p>
-    <p><strong>Level</strong> <span class="secondary-text"> {{spell.level}}</span></p>
-    <p><strong>Supported Classes:</strong> <span class="secondary-text"> {{spell.class}}</span></p>
-    <p><strong>School</strong> <span class="secondary-text"> {{spell.school}}</span></p>
-    <p><strong>Ritual?</strong> <span class="secondary-text"> {{spell.ritual}}</span></p>
-    <p><strong>Duration</strong> <span class="secondary-text"> {{spell.duration}}</span></p>
-    <p><strong>Concentration?</strong> <span class="secondary-text"> {{spell.concentration}}</span></p>
-    <p><strong>Components</strong> <span class="secondary-text"> {{spell.components}}</span></p>
-    <p><strong>Casting Time:</strong> <span class="secondary-text"> {{spell.casting_time}}</span></p>
-    <p><strong>Page</strong> <span class="secondary-text"> {{spell.page}}</span></p>
+    <div *ngIf="readonly">
+      <p><strong>Description</strong> <span class="secondary-text" [innerHTML]="spell.desc"></span></p>
+      <p *ngIf="spell.higher_level"><strong>At higher level: </strong><span class="secondary-text" [innerHTML]="spell.higher_level"></span></p>
+      <p><strong>Level</strong> <span class="secondary-text"> {{spell.level}}</span></p>
+      <p><strong>Supported Classes:</strong> <span class="secondary-text"> {{spell.class}}</span></p>
+      <p><strong>School</strong> <span class="secondary-text"> {{spell.school}}</span></p>
+      <p><strong>Ritual?</strong> <span class="secondary-text"> {{spell.ritual}}</span></p>
+      <p><strong>Duration</strong> <span class="secondary-text"> {{spell.duration}}</span></p>
+      <p><strong>Concentration?</strong> <span class="secondary-text"> {{spell.concentration}}</span></p>
+      <p><strong>Components</strong> <span class="secondary-text"> {{spell.components}}</span></p>
+      <p *ngIf="spell.circles"><strong>Circles</strong> <span class="secondary-text"> {{spell.circles}}</span></p>
+      <p *ngIf="spell.domains"><strong>Domains</strong> <span class="secondary-text"> {{spell.domains}}</span></p>
+      <p *ngIf="spell.oaths"><strong>Oaths</strong> <span class="secondary-text"> {{spell.oaths}}</span></p>
+      <p *ngIf="spell.patrons"><strong>Patrons</strong> <span class="secondary-text"> {{spell.patrons}}</span></p>
+      <p><strong>Casting Time:</strong> <span class="secondary-text"> {{spell.casting_time}}</span></p>
+      <p><strong>Page</strong> <span class="secondary-text"> {{spell.page}}</span></p>
+    </div>
+    <div *ngIf="!readonly">
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Name" formControlName="name" required>
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Level" formControlName="level" required>
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Supported Classes:" formControlName="class" required>
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <textarea mdInput placeholder="Description (Supports HTML):" formControlName="description"></textarea>
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <textarea mdInput placeholder="At Higher Level (Supports HTML):" formControlName="higher_level"></textarea>
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="School:" formControlName="school" required>
+      </md-input-container>
+      <md-slide-toggle [color]="accent" formControlName="ritual">
+        Ritual?
+      </md-slide-toggle>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Duration:" formControlName="duration" required>
+      </md-input-container>
+      <md-slide-toggle [color]="accent" formControlName="concentration">
+        Concentration?
+      </md-slide-toggle>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Circles:" formControlName="circles">
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Domains:" formControlName="domains">
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Oaths:" formControlName="oaths">
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Patrons:" formControlName="patrons">
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Components:" formControlName="components" required>
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Casting Time:" formControlName="casting_time" required>
+      </md-input-container>
+      <md-input-container color="accent" style="width:100%">
+        <input mdInput placeholder="Page:" formControlName="page" required>
+      </md-input-container>
+    </div>
   </div>
   <div md-dialog-actions>
 
     <span style="flex: 1 1 auto"></span>
-    <button md-raised-button color="primary" (click)="add()" *ngIf="selectedSpellbook?.spellbookId && !isSelected(spell)">Add</button>
-    <button md-raised-button color="warn" (click)="remove()" *ngIf="isSelected()">Remove</button>
-    <button md-raised-button md-dialog-close color="accent">Close</button>
+    <button md-raised-button color="primary" *ngIf="!readonly">Submit</button>
+    <button md-raised-button type="button" color="primary" (click)="readonly = false" *ngIf="readonly && auth.authenticated()">Edit</button>
+    <button md-raised-button type="button" color="warn" (click)="readonly = true" *ngIf="!readonly">Cancel Editing</button>
+    <button md-raised-button type="button" color="primary" (click)="add()" *ngIf="selectedSpellbook?.spellbookId && !isSelected()">Add</button>
+    <button md-raised-button type="button" color="warn" (click)="remove()" *ngIf="isSelected()">Remove</button>
+    <button md-raised-button type="button" md-dialog-close color="accent">Close</button>
   </div>
-</div>
+</form>
 
 <div *ngIf="!spell" class="loading"></div>

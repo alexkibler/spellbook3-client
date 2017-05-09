@@ -29,14 +29,18 @@ export class SpellsComponent implements OnInit {
   constructor(private spellbookService: SpellbookService, public dialog: MdDialog) { }
 
   ngOnInit() {
-    this.spellbookService.getSpells().subscribe(s => {
-      this.spells = s;
-      this.temp = [...s];
-      this.sort();
-    });
+    this.getSpells();
     this.selectedSpellbook = this.spellbookService.selectedSpellbook.getValue();
     this.spellbookService.selectedSpellbook.subscribe(x => {
       this.selectedSpellbook = x;
+    });
+  }
+
+  getSpells() {
+    const sub = this.spellbookService.getSpells().subscribe(s => {
+      this.spells = s;
+      this.temp = [...s];
+      this.sort();
     });
   }
 
@@ -52,13 +56,19 @@ export class SpellsComponent implements OnInit {
   }
 
   onSelect(spell) {
-    console.log(spell.id);
-    const dialogRef = this.dialog.open(SpellDetailDialogComponent);
-    dialogRef.componentInstance.id = spell.id;
+    const sub = this.spellbookService.getSpell(spell.id).subscribe(x => {
+      const dialogRef = this.dialog.open(SpellDetailDialogComponent, { width: '75%' });
+      dialogRef.componentInstance.spell = x;
+      sub.unsubscribe();
+      const sub2 = dialogRef.afterClosed().subscribe(r => {
+        sub.unsubscribe();
+        this.getSpells();
+      });
+    });
   }
 
   add(id) {
-    const sub = this.spellbookService.addSpell({spellbookId: this.selectedSpellbook.spellbookId, spellId: id}).subscribe(r => {
+    const sub = this.spellbookService.addSpell({ spellbookId: this.selectedSpellbook.spellbookId, spellId: id }).subscribe(r => {
       sub.unsubscribe();
       const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
         sub2.unsubscribe();
@@ -68,7 +78,7 @@ export class SpellsComponent implements OnInit {
   }
 
   remove(id) {
-    const sub = this.spellbookService.deleteSpellFromSpellbook({spellbookId: this.selectedSpellbook.spellbookId, spellId: id}).subscribe(() => {
+    const sub = this.spellbookService.deleteSpellFromSpellbook({ spellbookId: this.selectedSpellbook.spellbookId, spellId: id }).subscribe(() => {
       sub.unsubscribe();
       const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
         sub2.unsubscribe();
@@ -103,8 +113,18 @@ export class SpellsComponent implements OnInit {
         this.spellbookOnly = val;
     }
 
-    this.updateFilter();
-    this.sort();
+    if (type === 'sbOnly') {
+      // delay so the toggle doesn't lag
+      setTimeout(() => {
+
+        this.updateFilter();
+        this.sort();
+      }, 50);
+    } else {
+      this.updateFilter();
+      this.sort();
+    }
+
   }
 
   sort() {
@@ -121,20 +141,20 @@ export class SpellsComponent implements OnInit {
       temp = this.temp.filter(x => this.isSelected(x.id));
     }
     if (nameFilter) {
-    temp = temp.filter(function(d) {
-      return d.name.toLowerCase().indexOf(nameFilter) !== -1 || !nameFilter;
-    });
+      temp = temp.filter(function (d) {
+        return d.name.toLowerCase().indexOf(nameFilter) !== -1 || !nameFilter;
+      });
     }
     if (classFilter) {
-    temp = temp.filter(function(d) {
-      return d.class.toLowerCase().indexOf(classFilter) !== -1 || !classFilter;
-    });
+      temp = temp.filter(function (d) {
+        return d.class.toLowerCase().indexOf(classFilter) !== -1 || !classFilter;
+      });
     }
 
     if (levelFilter) {
-    temp = temp.filter(function(d) {
-      return d.level.toLowerCase().indexOf(levelFilter) !== -1 || !levelFilter;
-    });
+      temp = temp.filter(function (d) {
+        return d.level.toLowerCase().indexOf(levelFilter) !== -1 || !levelFilter;
+      });
     }
     // const filter = { name: nameFilter, level: levelFilter, class: classFilter };
     // const temp = this.temp.filter(item => {
