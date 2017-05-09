@@ -1,7 +1,7 @@
 <h2 style="margin:20px">Your Spellbooks:</h2>
 <button md-raised-button color="primary" (click)="add()" style="margin:20px">Add Spellbook</button>
 <div style="width:100%" fxLayout="row" fxLayoutWrap>
-  <md-card class="spellbook-card" *ngFor="let sb of spellbooks"  fxFlex.xs="100" fxFlex.sm="55" fxFlex.md="33" fxFlex.lg="30" fxFlex.xl="15">
+  <md-card class="spellbook-card" *ngFor="let sb of spellbooks"  fxFlex.xs="100" fxFlex.sm="55" fxFlex.md="33" fxFlex.lg="30" fxFlex.xl="17">
     <md-card-header>
       <div md-card-avatar [class]="'spellbook-'+sb.class+'-image'"></div>
       <md-card-title>{{sb.name}}</md-card-title>
