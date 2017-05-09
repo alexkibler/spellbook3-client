@@ -3,6 +3,9 @@
     <md-slide-toggle class="example-margin" #toggle (click)="filter('sbOnly', !toggle.checked)" *ngIf="selectedSpellbook?.spells?.length > 0">
         Show selected spells only?
     </md-slide-toggle>
+    <p *ngIf="selectedSpellbook?.name && (!selectedSpellbook.spells || selectedSpellbook?.spells.length === 0)">
+        You have not selected any spells.  Start by clicking the plus button beside a spell you want. 
+    </p>
     <table class="table">
         <thead>
             <th (click)="changeSort('name')" style="width:50%">
