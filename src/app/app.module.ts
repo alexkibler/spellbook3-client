@@ -20,6 +20,7 @@ import { SpellDetailDialogComponent } from './shared/spell-detail-dialog/spell-d
 import { SpellbookListComponent } from './spellbook/spellbook-list/spellbook-list.component';
 import { SpellbookEditComponent } from './spellbook/spellbook-edit/spellbook-edit.component';
 import { SpellbookDeleteComponent } from './spellbook/spellbook-delete/spellbook-delete.component';
+import { CharacterSheetComponent } from './character-sheet/character-sheet.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({}), http, options);
@@ -34,7 +35,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         SpellDetailDialogComponent,
         SpellbookListComponent,
         SpellbookEditComponent,
-        SpellbookDeleteComponent
+        SpellbookDeleteComponent,
+        CharacterSheetComponent
     ],
     providers: [
         appRoutingProviders,

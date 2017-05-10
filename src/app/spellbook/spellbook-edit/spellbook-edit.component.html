@@ -8,7 +8,7 @@
       <md-input-container color="accent">
         <textarea mdInput placeholder="Description" formControlName="description"></textarea>
       </md-input-container>
-      <md-select placeholder="Class" color="accent" formControlName="class" required>
+      <md-select placeholder="Primary Class" color="accent" formControlName="class" required>
         <md-option *ngFor="let class of classes" [value]="class" style="text-transform: capitalize">{{ class }}</md-option>
       </md-select>
       <!--<md-input-container color="accent">
