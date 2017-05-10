@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SpellbookService } from '../shared/spellbook.service';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-character-sheet',
@@ -9,8 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 export class CharacterSheetComponent implements OnInit {
   id: number;
   private sub: any;
+  public form: FormGroup;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private spellbookService: SpellbookService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
