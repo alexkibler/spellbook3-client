@@ -59,7 +59,7 @@ export class SpellDetailDialogComponent implements OnInit {
     return false;
   }
 
-update(form: FormGroup) {
+  update(form: FormGroup) {
     if (form.valid) {
       const spell = _.cloneDeep(this.spell);
       const fv = form.value;
@@ -86,24 +86,28 @@ update(form: FormGroup) {
 
 
   add() {
-    const sub = this.spellbookService.addSpell({spellbookId: this.selectedSpellbook.spellbookId, spellId: this.spell.spellId}).subscribe(r => {
-      sub.unsubscribe();
-      const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
-        sub2.unsubscribe();
-        this.spellbookService.setSpellbook(s);
-        this.dialogRef.close();
+    const sub = this.spellbookService.addSpell(
+      { spellbookId: this.selectedSpellbook.spellbookId, spellId: this.spell.spellId })
+      .subscribe(r => {
+        sub.unsubscribe();
+        const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
+          sub2.unsubscribe();
+          this.spellbookService.setSpellbook(s);
+          this.dialogRef.close();
+        });
       });
-    });
   }
 
   remove() {
-    const sub = this.spellbookService.deleteSpellFromSpellbook({spellbookId: this.selectedSpellbook.spellbookId, spellId: this.spell.spellId}).subscribe(() => {
-      sub.unsubscribe();
-      const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
-        sub2.unsubscribe();
-        this.spellbookService.setSpellbook(s);
-        this.dialogRef.close();
+    const sub = this.spellbookService.deleteSpellFromSpellbook(
+      { spellbookId: this.selectedSpellbook.spellbookId, spellId: this.spell.spellId })
+      .subscribe(() => {
+        sub.unsubscribe();
+        const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
+          sub2.unsubscribe();
+          this.spellbookService.setSpellbook(s);
+          this.dialogRef.close();
+        });
       });
-    });
   }
 }

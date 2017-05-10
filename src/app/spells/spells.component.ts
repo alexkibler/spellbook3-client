@@ -78,13 +78,15 @@ export class SpellsComponent implements OnInit {
   }
 
   remove(id) {
-    const sub = this.spellbookService.deleteSpellFromSpellbook({ spellbookId: this.selectedSpellbook.spellbookId, spellId: id }).subscribe(() => {
-      sub.unsubscribe();
-      const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
-        sub2.unsubscribe();
-        this.spellbookService.setSpellbook(s);
+    const sub = this.spellbookService.deleteSpellFromSpellbook(
+      { spellbookId: this.selectedSpellbook.spellbookId, spellId: id })
+      .subscribe(() => {
+        sub.unsubscribe();
+        const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
+          sub2.unsubscribe();
+          this.spellbookService.setSpellbook(s);
+        });
       });
-    });
   }
 
   changeSort(name) {

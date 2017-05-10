@@ -20,4 +20,8 @@ export class CharacterSheetComponent implements OnInit {
     });
   }
 
+  addClass() {
+    // nothing yet
+  }
+
 }
