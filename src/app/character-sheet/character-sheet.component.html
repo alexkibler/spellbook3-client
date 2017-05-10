@@ -1,14 +1,11 @@
 <form style="margin:15px;">
-
-
-    <h2>Character sheet</h2>
     <div fxLayout="column" fxLayoutGap="10px" style="width:50%; margin-left:25%">
         <div fxLayout="row" fxFlex="100">
-            <div fxFlex="100" fxLayout="column">
+            <div fxFlex="100" fxLayout="column" fxLayoutAlign="center stretch" class="border" style="font-size:24px">
                 <md-input-container style="width:100%" fxFlex="50">
-                    <input mdInput placeholder="Character Name">
+                    <input mdInput placeholder="Character Name" disabled value="David Bowie">
                 </md-input-container>
-                <div fxLayout="row">
+                <!--<div fxLayout="row">
                     <div fxFlex="33">
                         <md-input-container style="width:100%">
                             <input mdInput placeholder="Armor Class">
@@ -24,9 +21,9 @@
                             <input mdInput placeholder="Speed">
                         </md-input-container>
                     </div>
-                </div>
+                </div>-->
             </div>
-            <div fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch">
+            <div fxFlex="100" fxLayout="column" class="border">
                 <div fxFlex="50" fxLayout="row">
                     <div fxFlex="50">
                         <md-input-container style="width:100%">
@@ -59,113 +56,249 @@
             </div>
         </div>
         <div fxLayout="row">
-            <div fxLayout="column" id="abilityScores" fxFlex="15" style="font-size:22px">
+            <div fxLayout="column" fxFlex="15" id="abilityAndThrows">
+                <div class="border"  id="abilityScores" style="font-size:22px">
+                    <div fxLayout="row" style="font-size: 14px" fxFlex="10">
+                        <span>Ability Scores</span>
+                    </div>
+                    <div fxLayout="row" style="margin-top:20px" fxFlex="15">
+                        <md-input-container fxFlex="60">
+                            <input mdInput placeholder="STR" type="number">
+                        </md-input-container>
+                        <md-input-container fxFlex="40">
+                            <input mdInput placeholder="Mod" disabled value="+1">
+                        </md-input-container>
+                    </div>
+                    <div fxLayout="row" style="margin-top:20px" fxFlex="15">
+                        <md-input-container fxFlex="60">
+                            <input mdInput placeholder="DEX" type="number">
+                        </md-input-container>
+                        <md-input-container fxFlex="40">
+                            <input mdInput placeholder="Mod" disabled value="+1">
+                        </md-input-container>
+                    </div>
+                    <div fxLayout="row" style="margin-top:20px" fxFlex="15">
+                        <md-input-container fxFlex="60">
+                            <input mdInput placeholder="CON" type="number">
+                        </md-input-container>
+                        <md-input-container fxFlex="40">
+                            <input mdInput placeholder="Mod" disabled value="+1">
+                        </md-input-container>
+                    </div>
+                    <div fxLayout="row" style="margin-top:20px" fxFlex="15">
+                        <md-input-container fxFlex="60">
+                            <input mdInput placeholder="INT" type="number">
+                        </md-input-container>
+                        <md-input-container fxFlex="40">
+                            <input mdInput placeholder="Mod" disabled value="+1">
+                        </md-input-container>
+                    </div>
+                    <div fxLayout="row" style="margin-top:20px" fxFlex="15">
+                        <md-input-container fxFlex="60">
+                            <input mdInput placeholder="WIS" type="number">
+                        </md-input-container>
+                        <md-input-container fxFlex="40">
+                            <input mdInput placeholder="Mod" disabled value="+1">
+                        </md-input-container>
+                    </div>
+                    <div fxLayout="row" style="margin-top:20px" fxFlex="15">
+                        <md-input-container fxFlex="60">
+                            <input mdInput placeholder="CHA" type="number">
+                        </md-input-container>
+                        <md-input-container fxFlex="40">
+                            <input mdInput placeholder="Mod" disabled value="+1">
+                        </md-input-container>
+                    </div>
+                </div>
 
-                <div fxLayout="row" style="font-size: 14px">
-                    <span>Ability Scores</span>
-                </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="STR" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
-                    </md-input-container>
-                </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="DEX" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
-                    </md-input-container>
-                </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="CON" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
-                    </md-input-container>
-                </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="INT" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
-                    </md-input-container>
-                </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="WIS" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
-                    </md-input-container>
-                </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="CHA" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
-                    </md-input-container>
+                <div class="border" id="throws">
+                    <div fxLayout="row" style="font-size: 14px">
+                        <span>Saving Throws</span>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Strength">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Dexterity">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Constitution">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Intelligence">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Wisdom">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Charisma">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
                 </div>
             </div>
 
-            <div fxLayout="column" fxFlex="15" style="font-size:22px">
-
-                <div fxLayout="row" style="font-size: 14px">
-                    <span>Ability Scores</span>
+            <div fxLayout="column" id="throwsAndSkills" fxFlex="20" style="font-size: 10px">
+                <div class="border" id="inspiration">
+                        <md-checkbox disableRipple color="primary">
+                            Inspiration
+                        </md-checkbox>
                 </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="STR" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
+                <div class="border" id="profBonus">
+                    <md-input-container fxFlex style="width:100%; font-size:12px">
+                        <input mdInput placeholder="Proficiency Bonus" type="number">
                     </md-input-container>
                 </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="DEX" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
+                <div class="border" id="profBonus">
+                    <md-input-container fxFlex style="width:100%; font-size:12px">
+                        <input mdInput placeholder="Passive WIS (Perception)" type="number">
                     </md-input-container>
                 </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="CON" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
-                    </md-input-container>
-                </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="INT" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
-                    </md-input-container>
-                </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="WIS" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
-                    </md-input-container>
-                </div>
-                <div fxLayout="row">
-                    <md-input-container fxFlex="60">
-                        <input mdInput placeholder="CHA" type="number">
-                    </md-input-container>
-                    <md-input-container fxFlex="40">
-                        <input mdInput placeholder="Mod" disabled value="+1">
-                    </md-input-container>
+                <div class="border" id="skills">
+                    <div fxLayout="row" style="font-size: 14px">
+                        <span>Skills</span>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Acrobatics (Dex)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Animal Handling (Wis)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Arcana (Int)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Athletics (Str)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Deception (Cha)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="History (Int)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Insight (Wis)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Intimidation (Cha)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Investigation (Int)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Medicine (Wis)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Perception (Wis)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Performance (Cha)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Persuasion (Cha)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Religion (Int)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Sleight of Hand (Dex)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Stealth (Dex)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row">
+                        <md-checkbox disableRipple color="primary">
+                            <md-input-container>
+                                <input mdInput placeholder="Survival (Wis)">
+                            </md-input-container>
+                        </md-checkbox>
+                    </div>
                 </div>
             </div>
 
