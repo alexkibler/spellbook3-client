@@ -1,44 +1,174 @@
-<div style="margin:15px;">
+<form style="margin:15px;">
 
 
     <h2>Character sheet</h2>
-
-    <div fxLayout="row" style="width:50%; margin-left:25%">
-        <div fxFlex="50">
-            <md-input-container style="width:100%">
-                <input mdInput placeholder="Character Name">
-            </md-input-container>
-        </div>
-        <div fxFlex="50" fxLayout="column">
-            <div fxFlex="50" fxLayout="row">
-                <div fxFlex="50">
-                    <md-input-container style="width:100%">
-                        <input mdInput placeholder="Race">
-                    </md-input-container>
-                </div>
-                <div fxFlex="50">
-                    <md-input-container style="width:100%">
-                        <input mdInput placeholder="Alignment">
-                    </md-input-container>
+    <div fxLayout="column" fxLayoutGap="10px" style="width:50%; margin-left:25%">
+        <div fxLayout="row" fxFlex="100">
+            <div fxFlex="100" fxLayout="column">
+                <md-input-container style="width:100%" fxFlex="50">
+                    <input mdInput placeholder="Character Name">
+                </md-input-container>
+                <div fxLayout="row">
+                    <div fxFlex="33">
+                        <md-input-container style="width:100%">
+                            <input mdInput placeholder="Armor Class">
+                        </md-input-container>
+                    </div>
+                    <div fxFlex="33">
+                        <md-input-container style="width:100%">
+                            <input mdInput placeholder="Initiative">
+                        </md-input-container>
+                    </div>
+                    <div fxFlex="33">
+                        <md-input-container style="width:100%">
+                            <input mdInput placeholder="Speed">
+                        </md-input-container>
+                    </div>
                 </div>
             </div>
-            <div fxFlex="50" fxLayout="row">
-                <div fxFlex="100">
-                    <md-input-container style="width:100%">
-                        <input mdInput placeholder="Class">
-                    </md-input-container>
+            <div fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch">
+                <div fxFlex="50" fxLayout="row">
+                    <div fxFlex="50">
+                        <md-input-container style="width:100%">
+                            <input mdInput placeholder="Race">
+                        </md-input-container>
+                    </div>
+                    <div fxFlex="50">
+                        <md-input-container style="width:100%">
+                            <input mdInput placeholder="Alignment">
+                        </md-input-container>
+                    </div>
                 </div>
-                <div fxFlex="30">
-                    <md-input-container style="width:100%">
-                        <input mdInput type="number" placeholder="Level">
-                    </md-input-container>
-                </div>
-                <div fxFlex="20">
-                    <a md-raised-button routerLink="." color="primary">
+                <div fxFlex="50" fxLayout="row">
+                    <div fxFlex="100">
+                        <md-input-container style="width:100%">
+                            <input mdInput placeholder="Class">
+                        </md-input-container>
+                    </div>
+                    <div fxFlex="30">
+                        <md-input-container style="width:100%">
+                            <input mdInput type="number" placeholder="Level">
+                        </md-input-container>
+                    </div>
+                    <div fxFlex="20">
+                        <button type="button" md-raised-button (click)="addClass()" color="primary">
                         <md-icon>add</md-icon>
-                    </a>
+                    </button>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div fxLayout="row">
+            <div fxLayout="column" id="abilityScores" fxFlex="15" style="font-size:22px">
+
+                <div fxLayout="row" style="font-size: 14px">
+                    <span>Ability Scores</span>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="STR" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="DEX" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="CON" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="INT" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="WIS" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="CHA" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+            </div>
+
+            <div fxLayout="column" fxFlex="15" style="font-size:22px">
+
+                <div fxLayout="row" style="font-size: 14px">
+                    <span>Ability Scores</span>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="STR" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="DEX" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="CON" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="INT" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="WIS" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+                <div fxLayout="row">
+                    <md-input-container fxFlex="60">
+                        <input mdInput placeholder="CHA" type="number">
+                    </md-input-container>
+                    <md-input-container fxFlex="40">
+                        <input mdInput placeholder="Mod" disabled value="+1">
+                    </md-input-container>
+                </div>
+            </div>
+
         </div>
     </div>
-</div>
+</form>
