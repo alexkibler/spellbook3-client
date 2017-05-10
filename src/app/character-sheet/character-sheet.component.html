@@ -57,7 +57,7 @@
         </div>
         <div fxLayout="row">
             <div fxLayout="column" fxFlex="15" id="abilityAndThrows">
-                <div class="border"  id="abilityScores" style="font-size:22px">
+                <div class="border" id="abilityScores" style="font-size:22px">
                     <div fxLayout="row" style="font-size: 14px" fxFlex="10">
                         <span>Ability Scores</span>
                     </div>
@@ -160,11 +160,11 @@
                 </div>
             </div>
 
-            <div fxLayout="column" id="throwsAndSkills" fxFlex="20" style="font-size: 10px">
+            <div fxLayout="column" id="skills" fxFlex="20" style="font-size: 10px">
                 <div class="border" id="inspiration">
-                        <md-checkbox disableRipple color="primary">
-                            Inspiration
-                        </md-checkbox>
+                    <md-checkbox disableRipple color="primary">
+                        Inspiration
+                    </md-checkbox>
                 </div>
                 <div class="border" id="profBonus">
                     <md-input-container fxFlex style="width:100%; font-size:12px">
@@ -300,6 +300,60 @@
                         </md-checkbox>
                     </div>
                 </div>
+            </div>
+
+            <div fxLayout="column" id="centerColumn" fxFlex="35">
+                <div fxLayout="column" id="healthBlock" class="border">
+                    <div fxLayout="row" id="initACandSpeed" style="font-size:18px" class="border">
+                        <md-input-container>
+                            <input mdInput placeholder="AC" value="18">
+                        </md-input-container>
+                        <md-input-container>
+                            <input mdInput placeholder="Init" value="+3">
+                        </md-input-container>
+                        <md-input-container>
+                            <input mdInput placeholder="Speed" value="30">
+                        </md-input-container>
+                    </div>
+                    <div class="border">
+                        <md-input-container style="font-size:12px; width:100%">
+                            <input mdInput placeholder="Hit Point Maximum" value="18">
+                        </md-input-container>
+                        <md-input-container style="font-size:24px; width:100%">
+                            <input mdInput placeholder="Current Hit Points" value="18">
+                        </md-input-container>
+                    </div>
+                    <div fxLayout="row">
+                        <div class="border" fxFlex="50">
+                            <span> Hit Dice </span>
+                            <md-input-container style="font-size:12px; width:100%">
+                                <input mdInput placeholder="Total" value="18">
+                            </md-input-container>
+                            <md-input-container style=" width:100%">
+                                <input mdInput placeholder="Current" value="18">
+                            </md-input-container>
+                        </div>
+                        <div class="border" fxFlex="50" fxLayout="column">
+                            <span fxFlex="33"> Death Saves </span>
+                            <div fxLayout="row" fxFlex="33">
+                                <span fxFlex="40" style="font-size:10px">Success</span>
+                                <md-checkbox fxFlex="20" style="font-size:10px"></md-checkbox>
+                                <md-checkbox fxFlex="20" style="font-size:10px"></md-checkbox>
+                                <md-checkbox fxFlex="20" style="font-size:10px"></md-checkbox>
+                            </div>
+                            <div fxLayout="row" fxFlex="33">
+                                <span fxFlex="40" style="font-size:10px">Failure</span>
+                                <md-checkbox fxFlex="20" style="font-size:10px"></md-checkbox>
+                                <md-checkbox fxFlex="20" style="font-size:10px"></md-checkbox>
+                                <md-checkbox fxFlex="20" style="font-size:10px"></md-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="column" id="rightColumn" fxFlex="30">
+                right
             </div>
 
         </div>
