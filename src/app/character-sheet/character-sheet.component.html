@@ -1,9 +1,9 @@
 <form style="margin:15px;">
-    <div fxLayout="column" fxLayoutGap="10px" style="width:50%; margin-left:25%">
-        <div fxLayout="row" fxFlex="100">
+    <div fxLayout="column" fxLayoutGap="10px" style="width:60%; margin-left:20%">
+        <div fxLayout="row">
             <div fxFlex="100" fxLayout="column" fxLayoutAlign="center stretch" class="border" style="font-size:24px">
-                <md-input-container style="width:100%" fxFlex="50">
-                    <input mdInput placeholder="Character Name" disabled value="David Bowie">
+                <md-input-container style="width:100%;" fxFlex="50">
+                    <input mdInput placeholder="Character Name" disabled value="David Bowie" style=" color:white">
                 </md-input-container>
                 <!--<div fxLayout="row">
                     <div fxFlex="33">
@@ -48,7 +48,7 @@
                         </md-input-container>
                     </div>
                     <div fxFlex="20">
-                        <button type="button" md-raised-button (click)="addClass()" color="primary">
+                        <button type="button" md-mini-fab (click)="addClass()" color="accent">
                         <md-icon>add</md-icon>
                     </button>
                     </div>
@@ -57,7 +57,7 @@
         </div>
         <div fxLayout="row">
             <div fxLayout="column" fxFlex="15" id="abilityAndThrows">
-                <div class="border" id="abilityScores" style="font-size:22px">
+                <div class="border" id="abilityScores" style="font-size:17px">
                     <div fxLayout="row" style="font-size: 14px" fxFlex="10">
                         <span>Ability Scores</span>
                     </div>
@@ -160,7 +160,7 @@
                 </div>
             </div>
 
-            <div fxLayout="column" id="skills" fxFlex="20" style="font-size: 10px">
+            <div fxLayout="column" id="skills" fxFlex="20" style="font-size: 10px" fxFlex>
                 <div class="border" id="inspiration">
                     <md-checkbox disableRipple color="primary">
                         Inspiration
@@ -324,12 +324,12 @@
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <div class="border" fxFlex="50">
-                            <span> Hit Dice </span>
-                            <md-input-container style="font-size:12px; width:100%">
+                        <div class="border" fxFlex="50" fxLayout="column">
+                            <span fxFlex="33"> Hit Dice </span>
+                            <md-input-container fxFlex="33" style="font-size:12px; width:100%">
                                 <input mdInput placeholder="Total" value="18">
                             </md-input-container>
-                            <md-input-container style=" width:100%">
+                            <md-input-container fxFlex="33" style=" width:100%">
                                 <input mdInput placeholder="Current" value="18">
                             </md-input-container>
                         </div>
@@ -350,10 +350,81 @@
                         </div>
                     </div>
                 </div>
+
+                <div fxLayout="column" id="attackBlock" class="border">
+                    <span>Attacks</span>
+                    <div fxLayout="row" id="weaponblock">
+                        <md-input-container fxFlex="35">
+                            <input mdInput placeholder="Name">
+                        </md-input-container>
+                        <md-input-container fxFlex="20">
+                            <input mdInput placeholder="Atk">
+                        </md-input-container>
+                        <md-input-container fxFlex="35">
+                            <input mdInput placeholder="Damage/Type">
+                        </md-input-container>
+                        <button md-mini-fab fxFlex="10" color="accent"><md-icon>add</md-icon></button>
+                    </div>
+                    <span>Ammo</span>
+                    <div fxLayout="row" id="weaponblock">
+                        <md-input-container fxFlex="35">
+                            <input mdInput placeholder="Name">
+                        </md-input-container>
+                        <md-input-container fxFlex="30">
+                            <input mdInput placeholder="Remaining">
+                        </md-input-container>
+                        <md-input-container fxFlex="25">
+                            <input mdInput placeholder="Max">
+                        </md-input-container>
+                        <button md-mini-fab fxFlex="10" color="accent"><md-icon>add</md-icon></button>
+                    </div>
+                </div>
+
+                <div fxLayout="column" id="equipBlock" class="border">
+                    <span>Equipment and Currency</span>
+                    <div fxLayout="row">
+                        <md-input-container fxFlex="20">
+                            <input mdInput placeholder="CP">
+                        </md-input-container>
+                        <md-input-container fxFlex="20">
+                            <input mdInput placeholder="SP">
+                        </md-input-container>
+                        <md-input-container fxFlex="20">
+                            <input mdInput placeholder="EP">
+                        </md-input-container>
+                        <md-input-container fxFlex="20">
+                            <input mdInput placeholder="GP">
+                        </md-input-container>
+                        <md-input-container fxFlex="20">
+                            <input mdInput placeholder="PP">
+                        </md-input-container>
+                    </div>
+
+                    <md-input-container>
+                        <textarea mdInput placeholder="Other Equipment" rows="10" style="resize: vertical;"></textarea>
+                    </md-input-container>
+
+                </div>
             </div>
 
             <div fxLayout="column" id="rightColumn" fxFlex="30">
-                right
+                <div fxLayout="column" id="personality" class="border">
+                    <md-input-container class="border">
+                        <textarea mdInput placeholder="Personality Traits" rows="4"></textarea>
+                    </md-input-container>
+                    <md-input-container class="border">
+                        <textarea mdInput placeholder="Ideals" rows="3"></textarea>
+                    </md-input-container>
+                    <md-input-container class="border">
+                        <textarea mdInput placeholder="Bonds" rows="3"></textarea>
+                    </md-input-container>
+                    <md-input-container class="border">
+                        <textarea mdInput placeholder="Flaws/Quirks" rows="3"></textarea>
+                    </md-input-container>
+                </div>
+                <md-input-container class="border">
+                    <textarea mdInput placeholder="Class Features & Traits" rows="20"></textarea>
+                </md-input-container>
             </div>
 
         </div>
