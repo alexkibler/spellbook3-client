@@ -31,6 +31,15 @@ export class CharacterSheetComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       const sub = this.spellbookService.getCharacterSheet(this.id).subscribe(d => {
+        if (d.classLevels.length === 0) {
+          d.classLevels.push({});
+        }
+        if (d.ammos.length === 0) {
+          d.ammos.push({});
+        }
+        if (d.attacks.length === 0) {
+          d.attacks.push({});
+        }
         this.characterSheet = d;
         for (const stat in this.modifiers) {
           if (this.modifiers.hasOwnProperty(stat)) {

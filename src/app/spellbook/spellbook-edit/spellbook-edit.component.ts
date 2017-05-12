@@ -16,6 +16,7 @@ export class SpellbookEditComponent implements OnInit {
   public mode: string;
   public form: FormGroup;
   public classes = [
+    'artificer',
     'barbarian',
     'bard',
     'cleric',
