@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ToasterModule, ToasterService} from 'angular2-toaster';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { AppComponent } from './app.component';
@@ -60,6 +61,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        ToasterModule,
         MaterialModule.forRoot(),
         routing
     ],

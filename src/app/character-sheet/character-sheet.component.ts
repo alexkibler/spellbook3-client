@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpellbookService } from '../shared/spellbook.service';
+import { ToasterService } from 'angular2-toaster';
 import * as _ from 'lodash';
 
 @Component({
@@ -24,7 +25,8 @@ export class CharacterSheetComponent implements OnInit {
 
   constructor(
     private spellbookService: SpellbookService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toasterService: ToasterService
   ) { }
 
   ngOnInit() {
@@ -109,7 +111,7 @@ export class CharacterSheetComponent implements OnInit {
 
   saveChanges() {
     const sub = this.spellbookService.updateCharacterSheet(this.characterSheet).subscribe(() => {
-      console.log('successfully updated');
+      this.toasterService.pop('success', 'Success', 'Saved Changes');
       sub.unsubscribe();
     });
   }
