@@ -1,56 +1,43 @@
-<form style="margin:15px;">
+<div style="margin:15px;" *ngIf="characterSheet?.name" id="search">
     <div fxLayout="column" fxLayoutGap="10px" style="width:60%; margin-left:20%">
         <div fxLayout="row">
             <div fxFlex="100" fxLayout="column" fxLayoutAlign="center stretch" class="border" style="font-size:24px">
                 <md-input-container style="width:100%;" fxFlex="50">
-                    <input mdInput placeholder="Character Name" disabled value="David Bowie" style=" color:white">
+                    <input mdInput placeholder="Character Name" disabled style=" color:white" [(ngModel)]="characterSheet.name">
                 </md-input-container>
-                <!--<div fxLayout="row">
-                    <div fxFlex="33">
-                        <md-input-container style="width:100%">
-                            <input mdInput placeholder="Armor Class">
-                        </md-input-container>
-                    </div>
-                    <div fxFlex="33">
-                        <md-input-container style="width:100%">
-                            <input mdInput placeholder="Initiative">
-                        </md-input-container>
-                    </div>
-                    <div fxFlex="33">
-                        <md-input-container style="width:100%">
-                            <input mdInput placeholder="Speed">
-                        </md-input-container>
-                    </div>
-                </div>-->
+                <button md-raised-button color="primary" (click)="saveChanges()">Save Changes</button>
             </div>
             <div fxFlex="100" fxLayout="column" class="border">
                 <div fxFlex="50" fxLayout="row">
                     <div fxFlex="50">
                         <md-input-container style="width:100%">
-                            <input mdInput placeholder="Race">
+                            <input mdInput placeholder="Race" [(ngModel)]="characterSheet.race">
                         </md-input-container>
                     </div>
                     <div fxFlex="50">
                         <md-input-container style="width:100%">
-                            <input mdInput placeholder="Alignment">
+                            <input mdInput placeholder="Alignment" [(ngModel)]="characterSheet.alignment">
                         </md-input-container>
                     </div>
                 </div>
-                <div fxFlex="50" fxLayout="row">
+                <div fxFlex="50" fxLayout="row" *ngFor="let cl of characterSheet.classLevels; let i = index">
                     <div fxFlex="100">
                         <md-input-container style="width:100%">
-                            <input mdInput placeholder="Class">
+                            <input mdInput placeholder="Class" [(ngModel)]="cl.class">
                         </md-input-container>
                     </div>
                     <div fxFlex="30">
                         <md-input-container style="width:100%">
-                            <input mdInput type="number" placeholder="Level">
+                            <input mdInput type="number" placeholder="Level" [(ngModel)]="cl.level">
                         </md-input-container>
                     </div>
                     <div fxFlex="20">
-                        <button type="button" md-mini-fab (click)="addClass()" color="accent">
-                        <md-icon>add</md-icon>
-                    </button>
+                        <button type="button" color="warn" md-mini-fab (click)="removeClass(i)"*ngIf="i !== 0">
+                            <md-icon>remove</md-icon>
+                        </button>
+                        <button type="button" color="primary" md-mini-fab (click)="addClass()" *ngIf="i === characterSheet.classLevels.length-1">
+                            <md-icon>add</md-icon>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -63,50 +50,50 @@
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="STR" type="number">
+                            <input mdInput placeholder="STR" type="number" [(ngModel)]="characterSheet.abilityScores.strength" (keyup)="updateMod('str')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled value="+1">
+                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.str">
                         </md-input-container>
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="DEX" type="number">
+                            <input mdInput placeholder="DEX" type="number" [(ngModel)]="characterSheet.abilityScores.dexterity" (keyup)="updateMod('dex')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled value="+1">
+                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.dex">
                         </md-input-container>
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="CON" type="number">
+                            <input mdInput placeholder="CON" type="number" [(ngModel)]="characterSheet.abilityScores.constitution" (keyup)="updateMod('con')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled value="+1">
+                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.con">
                         </md-input-container>
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="INT" type="number">
+                            <input mdInput placeholder="INT" type="number" [(ngModel)]="characterSheet.abilityScores.intelligence" (keyup)="updateMod('int')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled value="+1">
+                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.int">
                         </md-input-container>
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="WIS" type="number">
+                            <input mdInput placeholder="WIS" type="number" [(ngModel)]="characterSheet.abilityScores.wisdom" (keyup)="updateMod('wis')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled value="+1">
+                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.wis">
                         </md-input-container>
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="CHA" type="number">
+                            <input mdInput placeholder="CHA" type="number" [(ngModel)]="characterSheet.abilityScores.charisma" (keyup)="updateMod('cha')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled value="+1">
+                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.cha">
                         </md-input-container>
                     </div>
                 </div>
@@ -116,44 +103,44 @@
                         <span>Saving Throws</span>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.strengthProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Strength">
+                                <input mdInput placeholder="Strength" [(ngModel)]="characterSheet.savingThrows.strengthValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.dexterityProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Dexterity">
+                                <input mdInput placeholder="Dexterity" [(ngModel)]="characterSheet.savingThrows.dexterityValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.constitutionProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Constitution">
+                                <input mdInput placeholder="Constitution" [(ngModel)]="characterSheet.savingThrows.constitutionValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.intelligenceProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Intelligence">
+                                <input mdInput placeholder="Intelligence" [(ngModel)]="characterSheet.savingThrows.intelligenceValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.wisdomProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Wisdom">
+                                <input mdInput placeholder="Wisdom" [(ngModel)]="characterSheet.savingThrows.wisdomValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.charismaProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Charisma">
+                                <input mdInput placeholder="Charisma" [(ngModel)]="characterSheet.savingThrows.charismaValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
@@ -161,19 +148,19 @@
             </div>
 
             <div fxLayout="column" id="skills" fxFlex="20" style="font-size: 10px" fxFlex>
-                <div class="border" id="inspiration">                    
-                    <md-checkbox disableRipple color="primary">
+                <div class="border" id="inspiration">
+                    <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.inspiration">
                         Inspiration
                     </md-checkbox>
                 </div>
                 <div class="border" id="profBonus">
                     <md-input-container fxFlex style="width:100%; font-size:12px">
-                        <input mdInput placeholder="Proficiency Bonus" type="number">
+                        <input mdInput placeholder="Proficiency Bonus" type="number" [(ngModel)]="characterSheet.proficiencyBonus">
                     </md-input-container>
                 </div>
                 <div class="border" id="profBonus">
                     <md-input-container fxFlex style="width:100%; font-size:12px">
-                        <input mdInput placeholder="Passive WIS (Perception)" type="number">
+                        <input mdInput placeholder="Passive Perception" type="number" [(ngModel)]="characterSheet.passivePerception">
                     </md-input-container>
                 </div>
                 <div class="border" id="skills">
@@ -181,157 +168,123 @@
                         <span>Skills</span>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Acrobatics (Dex)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.acrobaticsProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.acrobaticsProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Acrobatics (Dex)" [(ngModel)]="characterSheet.skills.acrobaticsValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Animal Handling (Wis)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.animalHandlingProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.animalHandlingProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Animal Handling (Wis)" [(ngModel)]="characterSheet.skills.animalHandlingValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Arcana (Int)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.arcanaProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.arcanaProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Arcana (Int)" [(ngModel)]="characterSheet.skills.arcanaValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Athletics (Str)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.athleticsProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.athleticsProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Athletics (Str)" [(ngModel)]="characterSheet.skills.athleticsValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Deception (Cha)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.deceptionProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.deceptionProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Deception (Cha)" [(ngModel)]="characterSheet.skills.deceptionValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="History (Int)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.historyProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.historyProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="History (Int)" [(ngModel)]="characterSheet.skills.historyValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Insight (Wis)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.insightProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.insightProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Insight (Wis)" [(ngModel)]="characterSheet.skills.insightValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Intimidation (Cha)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.intimidationProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.intimidationProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Intimidation (Cha)" [(ngModel)]="characterSheet.skills.intimidationValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Investigation (Int)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.investigationProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.investigationProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Investigation (Dex)" [(ngModel)]="characterSheet.skills.investigationValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Medicine (Wis)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.medicineProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.medicineProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Medicine (Wis)" [(ngModel)]="characterSheet.skills.medicineValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Perception (Wis)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.perceptionProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.perceptionProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Perception (Wis)" [(ngModel)]="characterSheet.skills.perceptionValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Performance (Cha)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.performanceProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.performanceProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Performance (Cha)" [(ngModel)]="characterSheet.skills.performanceValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Persuasion (Cha)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.persuasionProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.persuasionProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Persuasion (Cha)" [(ngModel)]="characterSheet.skills.persuasionValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Religion (Int)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.religionProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.religionProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Religion (Int)" [(ngModel)]="characterSheet.skills.religionValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Sleight of Hand (Dex)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.sleightOfHandProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.sleightOfHandProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Sleight of Hand (Dex)" [(ngModel)]="characterSheet.skills.sleightOfHandValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Stealth (Dex)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.stealthProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.stealthProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Stealth (Dex)" [(ngModel)]="characterSheet.skills.stealthValue">
+                        </md-input-container>
                     </div>
                     <div fxLayout="row">
-                        <md-checkbox disableRipple color="primary">
-                        <md-checkbox disableRipple color="primary">
-                            <md-input-container>
-                                <input mdInput placeholder="Survival (Wis)">
-                            </md-input-container>
-                            </md-checkbox>
-                        </md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.survivalProficient1"></md-checkbox>
+                        <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.survivalProficient2"></md-checkbox>
+                        <md-input-container>
+                            <input mdInput placeholder="Survival (Wis)" [(ngModel)]="characterSheet.skills.survivalValue">
+                        </md-input-container>
                     </div>
                 </div>
             </div>
@@ -340,46 +293,46 @@
                 <div fxLayout="column" id="healthBlock" class="border">
                     <div fxLayout="row" id="initACandSpeed" style="font-size:18px" class="border">
                         <md-input-container>
-                            <input mdInput placeholder="AC" value="18">
+                            <input mdInput placeholder="AC" [(ngModel)]="characterSheet.armorClass">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="Initiative" value="+3">
+                            <input mdInput placeholder="Initiative" [(ngModel)]="characterSheet.initiative">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="Speed" value="30">
+                            <input mdInput placeholder="Speed" [(ngModel)]="characterSheet.speed">
                         </md-input-container>
                     </div>
                     <div class="border">
                         <md-input-container style="font-size:12px; width:100%">
-                            <input mdInput placeholder="Hit Point Maximum" value="18">
+                            <input mdInput placeholder="Hit Point Maximum" [(ngModel)]="characterSheet.maxHP">
                         </md-input-container>
                         <md-input-container style="font-size:24px; width:100%">
-                            <input mdInput placeholder="Current Hit Points" value="18">
+                            <input mdInput placeholder="Current Hit Points" [(ngModel)]="characterSheet.currentHP">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <div class="border" fxFlex="50" fxLayout="column">
                             <span fxFlex="33"> Hit Dice </span>
                             <md-input-container fxFlex="33" style="font-size:12px; width:100%">
-                                <input mdInput placeholder="Total" value="18">
+                                <input mdInput placeholder="Total" [(ngModel)]="characterSheet.totalHitDice">
                             </md-input-container>
                             <md-input-container fxFlex="33" style=" width:100%">
-                                <input mdInput placeholder="Current" value="18">
+                                <input mdInput placeholder="Current" [(ngModel)]="characterSheet.currentHitDice">
                             </md-input-container>
                         </div>
                         <div class="border" fxFlex="50" fxLayout="column">
                             <span fxFlex="33"> Death Saves </span>
                             <div fxLayout="row" fxFlex="33">
                                 <span fxFlex="40" style="font-size:10px">Success</span>
-                                <md-checkbox fxFlex="20" style="font-size:10px" color="primary"></md-checkbox>
-                                <md-checkbox fxFlex="20" style="font-size:10px" color="primary"></md-checkbox>
-                                <md-checkbox fxFlex="20" style="font-size:10px" color="primary"></md-checkbox>
+                                <md-checkbox fxFlex="20" style="font-size:10px" color="primary" [(ngModel)]="characterSheet.deathSaves.success1"></md-checkbox>
+                                <md-checkbox fxFlex="20" style="font-size:10px" color="primary" [(ngModel)]="characterSheet.deathSaves.success2"></md-checkbox>
+                                <md-checkbox fxFlex="20" style="font-size:10px" color="primary" [(ngModel)]="characterSheet.deathSaves.success3"></md-checkbox>
                             </div>
                             <div fxLayout="row" fxFlex="33">
                                 <span fxFlex="40" style="font-size:10px">Failure</span>
-                                <md-checkbox fxFlex="20" style="font-size:10px" color="warn"></md-checkbox>
-                                <md-checkbox fxFlex="20" style="font-size:10px" color="warn"></md-checkbox>
-                                <md-checkbox fxFlex="20" style="font-size:10px" color="warn"></md-checkbox>
+                                <md-checkbox fxFlex="20" style="font-size:10px" color="warn" [(ngModel)]="characterSheet.deathSaves.failure1"></md-checkbox>
+                                <md-checkbox fxFlex="20" style="font-size:10px" color="warn" [(ngModel)]="characterSheet.deathSaves.failure2"></md-checkbox>
+                                <md-checkbox fxFlex="20" style="font-size:10px" color="warn" [(ngModel)]="characterSheet.deathSaves.failure3"></md-checkbox>
                             </div>
                         </div>
                     </div>
@@ -387,30 +340,42 @@
 
                 <div fxLayout="column" id="attackBlock" class="border">
                     <span>Attacks</span>
-                    <div fxLayout="row" id="weaponblock">
+                    <div fxLayout="row" *ngFor="let atk of characterSheet.attacks; let i = index">
                         <md-input-container fxFlex="35">
-                            <input mdInput placeholder="Name">
+                            <input mdInput placeholder="Name" [(ngModel)]="atk.name">
                         </md-input-container>
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="Atk">
-                        </md-input-container>
-                        <md-input-container fxFlex="35">
-                            <input mdInput placeholder="Damage/Type">
-                        </md-input-container>
-                        <button md-mini-fab fxFlex="10" color="accent"><md-icon>add</md-icon></button>
-                    </div>
-                    <span>Ammo</span>
-                    <div fxLayout="row" id="weaponblock">
-                        <md-input-container fxFlex="35">
-                            <input mdInput placeholder="Name">
-                        </md-input-container>
-                        <md-input-container fxFlex="30">
-                            <input mdInput placeholder="Remaining">
+                            <input mdInput placeholder="Atk" [(ngModel)]="atk.attackModifier">
                         </md-input-container>
                         <md-input-container fxFlex="25">
-                            <input mdInput placeholder="Max">
+                            <input mdInput placeholder="Damage/Type" [(ngModel)]="atk.damage">
                         </md-input-container>
-                        <button md-mini-fab fxFlex="10" color="accent"><md-icon>add</md-icon></button>
+                        
+                        <button type="button" color="warn" md-mini-fab (click)="removeAttack(i)"*ngIf="i !== 0" fxFlex="10">
+                            <md-icon>remove</md-icon>
+                        </button>
+                        <button type="button" color="primary" md-mini-fab (click)="addAttack()" *ngIf="i === characterSheet.attacks.length-1" fxFlex="10">
+                            <md-icon>add</md-icon>
+                        </button>
+                    </div>
+                    <span>Ammo</span>
+                    <div fxLayout="row" *ngFor="let ammo of characterSheet.ammos; let i = index">
+                        <md-input-container fxFlex="30">
+                            <input mdInput placeholder="Name" [(ngModel)]="ammo.name">
+                        </md-input-container>
+                        <md-input-container fxFlex="25">
+                            <input mdInput placeholder="Remaining" [(ngModel)]="ammo.remaining">
+                        </md-input-container>
+                        <md-input-container fxFlex="25">
+                            <input mdInput placeholder="Max" [(ngModel)]="ammo.max">
+                        </md-input-container>
+                        
+                        <button type="button" color="warn" md-mini-fab (click)="removeAmmo(i)"*ngIf="i !== 0" fxFlex="10">
+                            <md-icon>remove</md-icon>
+                        </button>
+                        <button type="button" color="primary" md-mini-fab (click)="addAmmo()" *ngIf="i === characterSheet.ammos.length-1" fxFlex="10">
+                            <md-icon>add</md-icon>
+                        </button>
                     </div>
                 </div>
 
@@ -418,24 +383,24 @@
                     <span>Equipment and Currency</span>
                     <div fxLayout="row">
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="CP">
+                            <input mdInput placeholder="CP" [(ngModel)]="characterSheet.currency.cp">
                         </md-input-container>
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="SP">
+                            <input mdInput placeholder="SP" [(ngModel)]="characterSheet.currency.sp">
                         </md-input-container>
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="EP">
+                            <input mdInput placeholder="EP" [(ngModel)]="characterSheet.currency.ep">
                         </md-input-container>
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="GP">
+                            <input mdInput placeholder="GP" [(ngModel)]="characterSheet.currency.gp">
                         </md-input-container>
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="PP">
+                            <input mdInput placeholder="PP" [(ngModel)]="characterSheet.currency.pp">
                         </md-input-container>
                     </div>
 
                     <md-input-container>
-                        <textarea mdInput placeholder="Other Equipment" rows="10" style="resize: vertical;"></textarea>
+                        <textarea mdInput placeholder="Other Equipment" rows="10" style="resize: vertical;" [(ngModel)]="characterSheet.equipment"></textarea>
                     </md-input-container>
 
                 </div>
@@ -444,23 +409,23 @@
             <div fxLayout="column" id="rightColumn" fxFlex="30">
                 <div fxLayout="column" id="personality" class="border">
                     <md-input-container class="border">
-                        <textarea mdInput placeholder="Personality Traits" rows="4"></textarea>
+                        <textarea mdInput placeholder="Personality Traits" rows="4" [(ngModel)]="characterSheet.personalityTraits"></textarea>
                     </md-input-container>
                     <md-input-container class="border">
-                        <textarea mdInput placeholder="Ideals" rows="3"></textarea>
+                        <textarea mdInput placeholder="Ideals" rows="3" [(ngModel)]="characterSheet.ideals"></textarea>
                     </md-input-container>
                     <md-input-container class="border">
-                        <textarea mdInput placeholder="Bonds" rows="3"></textarea>
+                        <textarea mdInput placeholder="Bonds" rows="3" [(ngModel)]="characterSheet.bonds"></textarea>
                     </md-input-container>
                     <md-input-container class="border">
-                        <textarea mdInput placeholder="Flaws/Quirks" rows="3"></textarea>
+                        <textarea mdInput placeholder="Flaws/Quirks" rows="3" [(ngModel)]="characterSheet.flaws"></textarea>
                     </md-input-container>
                 </div>
                 <md-input-container class="border">
-                    <textarea mdInput placeholder="Class Features & Traits" rows="20"></textarea>
+                    <textarea mdInput placeholder="Class Features & Traits" rows="20" [(ngModel)]="characterSheet.classFeatures"></textarea>
                 </md-input-container>
             </div>
 
         </div>
     </div>
-</form>
+</div>

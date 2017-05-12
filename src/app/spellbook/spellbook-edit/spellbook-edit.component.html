@@ -14,9 +14,7 @@
       <!--<md-input-container color="accent">
         <input mdInput placeholder="Image URL" formControlName="imageUrl">
       </md-input-container>-->
-      <md-input-container color="accent">
-        <input mdInput placeholder="Character Sheet URL" formControlName="characterSheetUrl">
-      </md-input-container>
+      <button md-raised-button type="button" color="primary" (click)="characterSheet()" *ngIf="this.mode === 'EDIT'">View Character Sheet</button>
       <button md-raised-button color="accent">Submit</button>
     </form>
   </div>

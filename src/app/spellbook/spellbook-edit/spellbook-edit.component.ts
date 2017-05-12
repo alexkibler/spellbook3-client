@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Auth } from '../../auth/auth.service';
 import { SpellbookService } from '../../shared/spellbook.service';
@@ -32,6 +33,7 @@ export class SpellbookEditComponent implements OnInit {
     private sbs: SpellbookService,
     private fb: FormBuilder,
     public dialogRef: MdDialogRef<SpellbookEditComponent>,
+    private router: Router,
     public auth: Auth
   ) { }
 
@@ -83,4 +85,16 @@ export class SpellbookEditComponent implements OnInit {
     }
   }
 
+  characterSheet() {
+    if (this.sb.characterSheetId === 0) {
+      this.sbs.createCharacterSheet({spellbookId: this.sb.spellbookId, name: this.sb.name}).subscribe(c => {
+        this.dialogRef.close();
+        this.router.navigateByUrl('/character/' + c.id);
+      });
+    } else {
+
+    this.dialogRef.close();
+    this.router.navigateByUrl('/character/' + this.sb.characterSheetId);
+    }
+  }
 }

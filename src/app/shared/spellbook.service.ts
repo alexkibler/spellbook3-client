@@ -59,4 +59,19 @@ export class SpellbookService {
     return this.http.post(`${this.apiUrl}/spellbooks`, spellbook)
       .map((response) => response.json());
   }
+
+  createCharacterSheet(characterSheet) {
+    return this.http.post(`${this.apiUrl}/characters`, characterSheet)
+      .map((response) => response.json());
+  }
+
+  getCharacterSheet(id) {
+    return this.http.get(`${this.apiUrl}/characters/${id}`)
+      .map((response) => response.json());
+  }
+
+  updateCharacterSheet(characterSheet) {
+    return this.http.put(`${this.apiUrl}/characters/${characterSheet.id}`, characterSheet);
+  }
+  
 }
