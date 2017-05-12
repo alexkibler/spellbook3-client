@@ -86,16 +86,4 @@ export class SpellbookEditComponent implements OnInit {
     }
   }
 
-  characterSheet() {
-    if (this.sb.characterSheetId === 0) {
-      this.sbs.createCharacterSheet({spellbookId: this.sb.spellbookId, name: this.sb.name}).subscribe(c => {
-        this.dialogRef.close();
-        this.router.navigateByUrl('/character/' + c.id);
-      });
-    } else {
-
-    this.dialogRef.close();
-    this.router.navigateByUrl('/character/' + this.sb.characterSheetId);
-    }
-  }
 }

@@ -49,6 +49,19 @@ export class SpellbookListComponent implements OnInit {
       this.getSpellbooks();
     });
   }
+
+  characterSheet(sb) {
+    if (sb.characterSheetId === 0) {
+      this.sbs.createCharacterSheet({spellbookId: sb.spellbookId, name: sb.name}).subscribe(c => {
+        this.router.navigateByUrl('/character/' + c.id);
+      });
+    } else {
+
+    this.router.navigateByUrl('/character/' + sb.characterSheetId);
+    }
+  }
+
+
   delete(sbId: number) {
     const dialogRef = this.dialog.open(SpellbookDeleteComponent);
     const sub1 = dialogRef.afterClosed().subscribe(r => {
