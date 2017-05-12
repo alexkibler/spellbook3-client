@@ -1,5 +1,8 @@
 <form [formGroup]="form" (ngSubmit)="update(form)">
-  <div md-dialog-title>{{spell.name}}</div>
+  <div md-dialog-title>
+    {{spell.name}}
+    <div style="top:15px; right:15px; position:absolute; cursor:pointer;" (click)="dialogRef.close()"><md-icon>close</md-icon></div>
+  </div>
   <div md-dialog-content>
     <div *ngIf="readonly">
       <p><strong>Description</strong> <span class="secondary-text" [innerHTML]="spell.desc"></span></p>
