@@ -29,15 +29,16 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## TODO
-* Create spellbook
+* ~~Create spellbook~~
 * ~~Lookup all spellbooks by user~~
-* Get all spells by spellbook
-* Add spells to spellbook
-* Delete spell from spellbook
+* ~~Get all spells by spellbook~~
+* ~~Add spells to spellbook~~
+* ~~Delete spell from spellbook~~
+* ~~Add description, class, datecreated, datemodified, image, character sheet url fields to spellbook table~~
+* ~~Make spellbook list page look like [this](http://prntscr.com/f4iiwe)~~
+* ~~Find placeholder images for every class for if user doesn't provide one~~
 * Admin page (Add/Edit/Delete spell, View all spellbooks, edit spellbook)
-* Add description, class, datecreated, datemodified, image, character sheet url fields to spellbook table
-* Make spellbook list page look like [this](http://prntscr.com/f4iiwe)
-* Find placeholder images for every class for if user doesn't provide one
 * Filter spellbook/addspell by default with character class
 * Active spells, spell slots, etc
 * Favorite but un-learned spells (for wizards)
+* Hide sidenav/hamburger on desktop
