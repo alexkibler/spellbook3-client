@@ -3,7 +3,7 @@
         <div fxLayout.gt-sm="row" fxLayout="column">
             <div fxFlex="100" fxLayout="column" fxLayoutAlign="center stretch" class="border" style="font-size:24px">
                 <md-input-container style="width:100%;" fxFlex="50">
-                    <input mdInput placeholder="Character Name" disabled style=" color:white" [(ngModel)]="characterSheet.name">
+                    <input (change)="changed($event)" mdInput placeholder="Character Name" disabled style=" color:white" [(ngModel)]="characterSheet.name">
                 </md-input-container>
                 <button md-raised-button color="primary" (click)="saveChanges()">Save Changes</button>
             </div>
@@ -11,24 +11,24 @@
                 <div fxFlex="50" fxLayout="row">
                     <div fxFlex="50">
                         <md-input-container style="width:100%">
-                            <input mdInput placeholder="Race" [(ngModel)]="characterSheet.race">
+                            <input (change)="changed($event)" mdInput placeholder="Race" [(ngModel)]="characterSheet.race">
                         </md-input-container>
                     </div>
                     <div fxFlex="50">
                         <md-input-container style="width:100%">
-                            <input mdInput placeholder="Alignment" [(ngModel)]="characterSheet.alignment">
+                            <input (change)="changed($event)" mdInput placeholder="Alignment" [(ngModel)]="characterSheet.alignment">
                         </md-input-container>
                     </div>
                 </div>
                 <div fxFlex="50" fxLayout="row" *ngFor="let cl of characterSheet.classLevels; let i = index">
                     <div fxFlex="45">
                         <md-input-container style="width:100%">
-                            <input mdInput placeholder="Class" [(ngModel)]="cl.class">
+                            <input (change)="changed($event)" mdInput placeholder="Class" [(ngModel)]="cl.class">
                         </md-input-container>
                     </div>
                     <div fxFlex="30">
                         <md-input-container style="width:100%">
-                            <input mdInput type="number" placeholder="Level" [(ngModel)]="cl.level">
+                            <input (change)="changed($event)" mdInput type="number" placeholder="Level" [(ngModel)]="cl.level">
                         </md-input-container>
                     </div>
                     <div fxFlex="25">
@@ -50,50 +50,50 @@
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="STR" type="number" [(ngModel)]="characterSheet.abilityScores.strength" (keyup)="updateMod('str')">
+                            <input (change)="changed($event)" mdInput placeholder="STR" type="number" [(ngModel)]="characterSheet.abilityScores.strength" (keyup)="updateMod('str')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.str">
+                            <input (change)="changed($event)" mdInput placeholder="Mod" disabled [value]="modifiers?.str">
                         </md-input-container>
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="DEX" type="number" [(ngModel)]="characterSheet.abilityScores.dexterity" (keyup)="updateMod('dex')">
+                            <input (change)="changed($event)" mdInput placeholder="DEX" type="number" [(ngModel)]="characterSheet.abilityScores.dexterity" (keyup)="updateMod('dex')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.dex">
+                            <input (change)="changed($event)" mdInput placeholder="Mod" disabled [value]="modifiers?.dex">
                         </md-input-container>
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="CON" type="number" [(ngModel)]="characterSheet.abilityScores.constitution" (keyup)="updateMod('con')">
+                            <input (change)="changed($event)" mdInput placeholder="CON" type="number" [(ngModel)]="characterSheet.abilityScores.constitution" (keyup)="updateMod('con')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.con">
+                            <input (change)="changed($event)" mdInput placeholder="Mod" disabled [value]="modifiers?.con">
                         </md-input-container>
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="INT" type="number" [(ngModel)]="characterSheet.abilityScores.intelligence" (keyup)="updateMod('int')">
+                            <input (change)="changed($event)" mdInput placeholder="INT" type="number" [(ngModel)]="characterSheet.abilityScores.intelligence" (keyup)="updateMod('int')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.int">
+                            <input (change)="changed($event)" mdInput placeholder="Mod" disabled [value]="modifiers?.int">
                         </md-input-container>
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="WIS" type="number" [(ngModel)]="characterSheet.abilityScores.wisdom" (keyup)="updateMod('wis')">
+                            <input (change)="changed($event)" mdInput placeholder="WIS" type="number" [(ngModel)]="characterSheet.abilityScores.wisdom" (keyup)="updateMod('wis')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.wis">
+                            <input (change)="changed($event)" mdInput placeholder="Mod" disabled [value]="modifiers?.wis">
                         </md-input-container>
                     </div>
                     <div fxLayout="row" style="margin-top:20px" fxFlex="15">
                         <md-input-container fxFlex="60">
-                            <input mdInput placeholder="CHA" type="number" [(ngModel)]="characterSheet.abilityScores.charisma" (keyup)="updateMod('cha')">
+                            <input (change)="changed($event)" mdInput placeholder="CHA" type="number" [(ngModel)]="characterSheet.abilityScores.charisma" (keyup)="updateMod('cha')">
                         </md-input-container>
                         <md-input-container fxFlex="40">
-                            <input mdInput placeholder="Mod" disabled [value]="modifiers?.cha">
+                            <input (change)="changed($event)" mdInput placeholder="Mod" disabled [value]="modifiers?.cha">
                         </md-input-container>
                     </div>
                 </div>
@@ -105,42 +105,42 @@
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.strengthProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Strength" [(ngModel)]="characterSheet.savingThrows.strengthValue" [ngModelOptions]="{standalone:true}">
+                                <input (change)="changed($event)" mdInput placeholder="Strength" [(ngModel)]="characterSheet.savingThrows.strengthValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.dexterityProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Dexterity" [(ngModel)]="characterSheet.savingThrows.dexterityValue" [ngModelOptions]="{standalone:true}">
+                                <input (change)="changed($event)" mdInput placeholder="Dexterity" [(ngModel)]="characterSheet.savingThrows.dexterityValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.constitutionProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Constitution" [(ngModel)]="characterSheet.savingThrows.constitutionValue" [ngModelOptions]="{standalone:true}">
+                                <input (change)="changed($event)" mdInput placeholder="Constitution" [(ngModel)]="characterSheet.savingThrows.constitutionValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.intelligenceProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Intelligence" [(ngModel)]="characterSheet.savingThrows.intelligenceValue" [ngModelOptions]="{standalone:true}">
+                                <input (change)="changed($event)" mdInput placeholder="Intelligence" [(ngModel)]="characterSheet.savingThrows.intelligenceValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.wisdomProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Wisdom" [(ngModel)]="characterSheet.savingThrows.wisdomValue" [ngModelOptions]="{standalone:true}">
+                                <input (change)="changed($event)" mdInput placeholder="Wisdom" [(ngModel)]="characterSheet.savingThrows.wisdomValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.savingThrows.charismaProficient" [ngModelOptions]="{standalone:true}">
                             <md-input-container>
-                                <input mdInput placeholder="Charisma" [(ngModel)]="characterSheet.savingThrows.charismaValue" [ngModelOptions]="{standalone:true}">
+                                <input (change)="changed($event)" mdInput placeholder="Charisma" [(ngModel)]="characterSheet.savingThrows.charismaValue" [ngModelOptions]="{standalone:true}">
                             </md-input-container>
                         </md-checkbox>
                     </div>
@@ -155,12 +155,12 @@
                 </div>
                 <div class="border" id="profBonus">
                     <md-input-container fxFlex style="width:100%; font-size:12px">
-                        <input mdInput placeholder="Proficiency Bonus" type="number" [(ngModel)]="characterSheet.proficiencyBonus">
+                        <input (change)="changed($event)" mdInput placeholder="Proficiency Bonus" type="number" [(ngModel)]="characterSheet.proficiencyBonus">
                     </md-input-container>
                 </div>
                 <div class="border" id="profBonus">
                     <md-input-container fxFlex style="width:100%; font-size:12px">
-                        <input mdInput placeholder="Passive Perception" type="number" [(ngModel)]="characterSheet.passivePerception">
+                        <input (change)="changed($event)" mdInput placeholder="Passive Perception" type="number" [(ngModel)]="characterSheet.passivePerception">
                     </md-input-container>
                 </div>
                 <div class="border" id="skills">
@@ -171,119 +171,119 @@
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.acrobaticsProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.acrobaticsProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Acrobatics (Dex)" [(ngModel)]="characterSheet.skills.acrobaticsValue">
+                            <input (change)="changed($event)" mdInput placeholder="Acrobatics (Dex)" [(ngModel)]="characterSheet.skills.acrobaticsValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.animalHandlingProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.animalHandlingProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Animal Handling (Wis)" [(ngModel)]="characterSheet.skills.animalHandlingValue">
+                            <input (change)="changed($event)" mdInput placeholder="Animal Handling (Wis)" [(ngModel)]="characterSheet.skills.animalHandlingValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.arcanaProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.arcanaProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Arcana (Int)" [(ngModel)]="characterSheet.skills.arcanaValue">
+                            <input (change)="changed($event)" mdInput placeholder="Arcana (Int)" [(ngModel)]="characterSheet.skills.arcanaValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.athleticsProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.athleticsProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Athletics (Str)" [(ngModel)]="characterSheet.skills.athleticsValue">
+                            <input (change)="changed($event)" mdInput placeholder="Athletics (Str)" [(ngModel)]="characterSheet.skills.athleticsValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.deceptionProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.deceptionProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Deception (Cha)" [(ngModel)]="characterSheet.skills.deceptionValue">
+                            <input (change)="changed($event)" mdInput placeholder="Deception (Cha)" [(ngModel)]="characterSheet.skills.deceptionValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.historyProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.historyProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="History (Int)" [(ngModel)]="characterSheet.skills.historyValue">
+                            <input (change)="changed($event)" mdInput placeholder="History (Int)" [(ngModel)]="characterSheet.skills.historyValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.insightProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.insightProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Insight (Wis)" [(ngModel)]="characterSheet.skills.insightValue">
+                            <input (change)="changed($event)" mdInput placeholder="Insight (Wis)" [(ngModel)]="characterSheet.skills.insightValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.intimidationProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.intimidationProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Intimidation (Cha)" [(ngModel)]="characterSheet.skills.intimidationValue">
+                            <input (change)="changed($event)" mdInput placeholder="Intimidation (Cha)" [(ngModel)]="characterSheet.skills.intimidationValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.investigationProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.investigationProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Investigation (Dex)" [(ngModel)]="characterSheet.skills.investigationValue">
+                            <input (change)="changed($event)" mdInput placeholder="Investigation (Dex)" [(ngModel)]="characterSheet.skills.investigationValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.medicineProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.medicineProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Medicine (Wis)" [(ngModel)]="characterSheet.skills.medicineValue">
+                            <input (change)="changed($event)" mdInput placeholder="Medicine (Wis)" [(ngModel)]="characterSheet.skills.medicineValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.perceptionProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.perceptionProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Perception (Wis)" [(ngModel)]="characterSheet.skills.perceptionValue">
+                            <input (change)="changed($event)" mdInput placeholder="Perception (Wis)" [(ngModel)]="characterSheet.skills.perceptionValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.performanceProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.performanceProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Performance (Cha)" [(ngModel)]="characterSheet.skills.performanceValue">
+                            <input (change)="changed($event)" mdInput placeholder="Performance (Cha)" [(ngModel)]="characterSheet.skills.performanceValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.persuasionProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.persuasionProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Persuasion (Cha)" [(ngModel)]="characterSheet.skills.persuasionValue">
+                            <input (change)="changed($event)" mdInput placeholder="Persuasion (Cha)" [(ngModel)]="characterSheet.skills.persuasionValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.religionProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.religionProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Religion (Int)" [(ngModel)]="characterSheet.skills.religionValue">
+                            <input (change)="changed($event)" mdInput placeholder="Religion (Int)" [(ngModel)]="characterSheet.skills.religionValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.sleightOfHandProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.sleightOfHandProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Sleight of Hand (Dex)" [(ngModel)]="characterSheet.skills.sleightOfHandValue">
+                            <input (change)="changed($event)" mdInput placeholder="Sleight of Hand (Dex)" [(ngModel)]="characterSheet.skills.sleightOfHandValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.stealthProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.stealthProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Stealth (Dex)" [(ngModel)]="characterSheet.skills.stealthValue">
+                            <input (change)="changed($event)" mdInput placeholder="Stealth (Dex)" [(ngModel)]="characterSheet.skills.stealthValue">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.survivalProficient1"></md-checkbox>
                         <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.skills.survivalProficient2"></md-checkbox>
                         <md-input-container>
-                            <input mdInput placeholder="Survival (Wis)" [(ngModel)]="characterSheet.skills.survivalValue">
+                            <input (change)="changed($event)" mdInput placeholder="Survival (Wis)" [(ngModel)]="characterSheet.skills.survivalValue">
                         </md-input-container>
                     </div>
                 </div>
@@ -293,31 +293,31 @@
                 <div fxLayout="column" id="healthBlock" class="border">
                     <div fxLayout="row" id="initACandSpeed" style="font-size:18px" class="border">
                         <md-input-container>
-                            <input mdInput placeholder="AC" [(ngModel)]="characterSheet.armorClass">
+                            <input (change)="changed($event)" mdInput placeholder="AC" [(ngModel)]="characterSheet.armorClass">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="Initiative" [(ngModel)]="characterSheet.initiative">
+                            <input (change)="changed($event)" mdInput placeholder="Initiative" [(ngModel)]="characterSheet.initiative">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="Speed" [(ngModel)]="characterSheet.speed">
+                            <input (change)="changed($event)" mdInput placeholder="Speed" [(ngModel)]="characterSheet.speed">
                         </md-input-container>
                     </div>
                     <div class="border">
                         <md-input-container style="font-size:12px; width:100%">
-                            <input mdInput placeholder="Hit Point Maximum" [(ngModel)]="characterSheet.maxHP">
+                            <input (change)="changed($event)" mdInput placeholder="Hit Point Maximum" [(ngModel)]="characterSheet.maxHP">
                         </md-input-container>
                         <md-input-container style="font-size:24px; width:100%">
-                            <input mdInput placeholder="Current Hit Points" [(ngModel)]="characterSheet.currentHP">
+                            <input (change)="changed($event)" mdInput placeholder="Current Hit Points" [(ngModel)]="characterSheet.currentHP">
                         </md-input-container>
                     </div>
                     <div fxLayout="row">
                         <div class="border" fxFlex="50" fxLayout="column">
                             <span fxFlex="33"> Hit Dice </span>
                             <md-input-container fxFlex="33" style="font-size:12px; width:100%">
-                                <input mdInput placeholder="Total" [(ngModel)]="characterSheet.totalHitDice">
+                                <input (change)="changed($event)" mdInput placeholder="Total" [(ngModel)]="characterSheet.totalHitDice">
                             </md-input-container>
                             <md-input-container fxFlex="33" style=" width:100%">
-                                <input mdInput placeholder="Current" [(ngModel)]="characterSheet.currentHitDice">
+                                <input (change)="changed($event)" mdInput placeholder="Current" [(ngModel)]="characterSheet.currentHitDice">
                             </md-input-container>
                         </div>
                         <div class="border" fxFlex="50" fxLayout="column">
@@ -342,13 +342,13 @@
                     <span>Attacks</span>
                     <div fxLayout="row" *ngFor="let atk of characterSheet.attacks; let i = index">
                         <md-input-container fxFlex="35">
-                            <input mdInput placeholder="Name" [(ngModel)]="atk.name">
+                            <input (change)="changed($event)" mdInput placeholder="Name" [(ngModel)]="atk.name">
                         </md-input-container>
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="Atk" [(ngModel)]="atk.attackModifier">
+                            <input (change)="changed($event)" mdInput placeholder="Atk" [(ngModel)]="atk.attackModifier">
                         </md-input-container>
                         <md-input-container fxFlex="25">
-                            <input mdInput placeholder="Damage/Type" [(ngModel)]="atk.damage">
+                            <input (change)="changed($event)" mdInput placeholder="Damage/Type" [(ngModel)]="atk.damage">
                         </md-input-container>
                         
                         <button type="button" color="warn" md-mini-fab (click)="removeAttack(i)"*ngIf="i !== 0" fxFlex="10">
@@ -361,13 +361,13 @@
                     <span>Ammo</span>
                     <div fxLayout="row" *ngFor="let ammo of characterSheet.ammos; let i = index">
                         <md-input-container fxFlex="30">
-                            <input mdInput placeholder="Name" [(ngModel)]="ammo.name">
+                            <input (change)="changed($event)" mdInput placeholder="Name" [(ngModel)]="ammo.name">
                         </md-input-container>
                         <md-input-container fxFlex="25">
-                            <input mdInput placeholder="Remaining" [(ngModel)]="ammo.remaining">
+                            <input (change)="changed($event)" mdInput placeholder="Remaining" [(ngModel)]="ammo.remaining">
                         </md-input-container>
                         <md-input-container fxFlex="25">
-                            <input mdInput placeholder="Max" [(ngModel)]="ammo.max">
+                            <input (change)="changed($event)" mdInput placeholder="Max" [(ngModel)]="ammo.max">
                         </md-input-container>
                         
                         <button type="button" color="warn" md-mini-fab (click)="removeAmmo(i)"*ngIf="i !== 0" fxFlex="10">
@@ -383,19 +383,19 @@
                     <span>Equipment and Currency</span>
                     <div fxLayout="row">
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="CP" [(ngModel)]="characterSheet.currency.cp">
+                            <input (change)="changed($event)" mdInput placeholder="CP" [(ngModel)]="characterSheet.currency.cp">
                         </md-input-container>
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="SP" [(ngModel)]="characterSheet.currency.sp">
+                            <input (change)="changed($event)" mdInput placeholder="SP" [(ngModel)]="characterSheet.currency.sp">
                         </md-input-container>
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="EP" [(ngModel)]="characterSheet.currency.ep">
+                            <input (change)="changed($event)" mdInput placeholder="EP" [(ngModel)]="characterSheet.currency.ep">
                         </md-input-container>
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="GP" [(ngModel)]="characterSheet.currency.gp">
+                            <input (change)="changed($event)" mdInput placeholder="GP" [(ngModel)]="characterSheet.currency.gp">
                         </md-input-container>
                         <md-input-container fxFlex="20">
-                            <input mdInput placeholder="PP" [(ngModel)]="characterSheet.currency.pp">
+                            <input (change)="changed($event)" mdInput placeholder="PP" [(ngModel)]="characterSheet.currency.pp">
                         </md-input-container>
                     </div>
 
