@@ -43,7 +43,7 @@
             </div>
         </div>
         <div fxLayout.gt-sm="row" fxLayout="column">
-            <div fxLayout="column" fxFlex="15" id="abilityAndThrows">
+            <div fxLayout="column" fxFlex="15" id="abilityAndThrows" fxFlexOrder.xs="2">
                 <div class="border" id="abilityScores" style="font-size:17px">
                     <div fxLayout="row" style="font-size: 14px" fxFlex="10">
                         <span>Ability Scores</span>
@@ -147,7 +147,7 @@
                 </div>
             </div>
 
-            <div fxLayout="column" id="skills" fxFlex="20" style="font-size: 10px">
+            <div fxLayout="column" id="skills" fxFlex="20" style="font-size: 10px" fxFlexOrder.xs="3">
                 <div class="border" id="inspiration">
                     <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.inspiration">
                         Inspiration
@@ -289,7 +289,7 @@
                 </div>
             </div>
 
-            <div fxLayout="column" id="centerColumn" fxFlex="35">
+            <div fxLayout="column" id="centerColumn" fxFlex="35" fxFlexOrder.xs="1">
                 <div fxLayout="column" id="healthBlock" class="border">
                     <div fxLayout="row" id="initACandSpeed" style="font-size:18px" class="border">
                         <md-input-container>
@@ -406,7 +406,7 @@
                 </div>
             </div>
 
-            <div fxLayout="column" id="rightColumn" fxFlex="30">
+            <div fxLayout="column" id="rightColumn" fxFlex="30" fxFlexOrder.xs="4">
                 <div fxLayout="column" id="personality" class="border">
                     <md-input-container class="border">
                         <textarea mdInput placeholder="Personality Traits" rows="4" [(ngModel)]="characterSheet.personalityTraits"></textarea>
