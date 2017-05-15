@@ -110,7 +110,8 @@ export class CharacterSheetComponent implements OnInit {
   }
 
   saveChanges() {
-      const toast = this.toasterService.pop('info', 'Saving', 'Saving...');
+    this.toasterService.clear();
+    const toast = this.toasterService.pop('info', 'Saving', 'Saving...');
     const sub = this.spellbookService.updateCharacterSheet(this.characterSheet).subscribe(() => {
       this.toasterService.pop('success', 'Success', 'Saved Changes');
       sub.unsubscribe();
