@@ -1,6 +1,6 @@
 <div style="margin:15px;" *ngIf="characterSheet?.name" id="search">
-    <div fxLayout="column" fxLayoutGap="10px" style="width:60%; margin-left:20%">
-        <div fxLayout="row">
+    <div fxLayout="column" fxLayoutGap="10px" id="characterSheet">
+        <div fxLayout.gt-sm="row" fxLayout="column">
             <div fxFlex="100" fxLayout="column" fxLayoutAlign="center stretch" class="border" style="font-size:24px">
                 <md-input-container style="width:100%;" fxFlex="50">
                     <input mdInput placeholder="Character Name" disabled style=" color:white" [(ngModel)]="characterSheet.name">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div fxFlex="50" fxLayout="row" *ngFor="let cl of characterSheet.classLevels; let i = index">
-                    <div fxFlex="100">
+                    <div fxFlex="45">
                         <md-input-container style="width:100%">
                             <input mdInput placeholder="Class" [(ngModel)]="cl.class">
                         </md-input-container>
@@ -31,7 +31,7 @@
                             <input mdInput type="number" placeholder="Level" [(ngModel)]="cl.level">
                         </md-input-container>
                     </div>
-                    <div fxFlex="20">
+                    <div fxFlex="25">
                         <button type="button" color="warn" md-mini-fab (click)="removeClass(i)"*ngIf="i !== 0">
                             <md-icon>remove</md-icon>
                         </button>
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-        <div fxLayout="row">
+        <div fxLayout.gt-sm="row" fxLayout="column">
             <div fxLayout="column" fxFlex="15" id="abilityAndThrows">
                 <div class="border" id="abilityScores" style="font-size:17px">
                     <div fxLayout="row" style="font-size: 14px" fxFlex="10">
@@ -147,7 +147,7 @@
                 </div>
             </div>
 
-            <div fxLayout="column" id="skills" fxFlex="20" style="font-size: 10px" fxFlex>
+            <div fxLayout="column" id="skills" fxFlex="20" style="font-size: 10px">
                 <div class="border" id="inspiration">
                     <md-checkbox disableRipple color="primary" [(ngModel)]="characterSheet.inspiration">
                         Inspiration
