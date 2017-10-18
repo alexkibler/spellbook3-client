@@ -12,6 +12,7 @@ import { SpellDetailDialogComponent } from '../shared/spell-detail-dialog/spell-
 })
 export class SpellsComponent implements OnInit {
   public spells: any[];
+  public spell: any;
   public sortOrder = 'name';
   public sortAsc = true;
   public spellbookOnly = false;
@@ -69,12 +70,8 @@ export class SpellsComponent implements OnInit {
   onSelect(spell) {
     this.router.navigateByUrl('spells/' + spell.id);
     const sub = this.spellbookService.getSpell(spell.id).subscribe(x => {
-      const dialogRef = this.dialog.open(SpellDetailDialogComponent, { width: '75%' });
-      dialogRef.componentInstance.spell = x;
-      sub.unsubscribe();
-      const sub2 = dialogRef.afterClosed().subscribe(r => {
-        sub.unsubscribe();
-      });
+      this.spell = x;
+      window.scrollTo(0,0);
     });
   }
 

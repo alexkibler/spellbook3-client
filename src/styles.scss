@@ -1,9 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~normalize.css';
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/themes/dark.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
 @import 'node_modules/angular2-toaster/toaster';
 @import './assets/scss/spinner.scss';
 @import './assets/scss/spellbook-cards.scss';
@@ -82,3 +78,9 @@ th {
 
 
 tr:hover {background-color: #444}
+
+.spell-fab {
+  position: absolute !important;
+  right: 20px !important;
+  top: 80px !important;
+}

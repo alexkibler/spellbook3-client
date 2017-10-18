@@ -1,24 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { Component, OnInit, Input } from '@angular/core';
+import { MdDialog } from '@angular/material';
 import { SpellbookService } from '../spellbook.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Auth } from '../../auth/auth.service';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-spell-detail-dialog',
+  selector: 'app-spell-detail',
   templateUrl: './spell-detail-dialog.component.html',
   styleUrls: ['./spell-detail-dialog.component.scss']
 })
 export class SpellDetailDialogComponent implements OnInit {
-  spell: any;
+  @Input() spell: any;
   readonly = true;
   public form: FormGroup;
   selectedSpellbook;
   constructor(
     private spellbookService: SpellbookService,
     private fb: FormBuilder,
-    public dialogRef: MdDialogRef<SpellDetailDialogComponent>,
     public auth: Auth
   ) { }
 
@@ -78,8 +77,6 @@ export class SpellDetailDialogComponent implements OnInit {
       spell.page = fv.page;
       const sub = this.spellbookService.updateSpell(spell).subscribe(x => {
         sub.unsubscribe();
-        this.dialogRef.close();
-
       });
     }
   }
@@ -93,7 +90,6 @@ export class SpellDetailDialogComponent implements OnInit {
         const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
           sub2.unsubscribe();
           this.spellbookService.setSpellbook(s);
-          this.dialogRef.close();
         });
       });
   }
@@ -106,7 +102,6 @@ export class SpellDetailDialogComponent implements OnInit {
         const sub2 = this.spellbookService.getSpellbook(this.selectedSpellbook.spellbookId).subscribe(s => {
           sub2.unsubscribe();
           this.spellbookService.setSpellbook(s);
-          this.dialogRef.close();
         });
       });
   }

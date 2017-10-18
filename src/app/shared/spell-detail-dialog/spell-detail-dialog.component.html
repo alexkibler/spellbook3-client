@@ -1,9 +1,8 @@
 <form [formGroup]="form" (ngSubmit)="update(form)">
-  <div md-dialog-title>
+  <h3>
     {{spell.name}}
-    <div style="top:15px; right:15px; position:absolute; cursor:pointer;" (click)="dialogRef.close()"><md-icon>close</md-icon></div>
-  </div>
-  <div md-dialog-content>
+  </h3>
+  <div>
     <div *ngIf="readonly">
       <p><strong>Description</strong> <span class="secondary-text" [innerHTML]="spell.desc"></span></p>
       <p *ngIf="spell.higher_level"><strong>At higher level: </strong><span class="secondary-text" [innerHTML]="spell.higher_level"></span></p>
@@ -40,13 +39,13 @@
       <md-input-container color="accent" style="width:100%">
         <input mdInput placeholder="School:" formControlName="school" required>
       </md-input-container>
-      <md-slide-toggle [color]="accent" formControlName="ritual">
+      <md-slide-toggle color="accent" formControlName="ritual">
         Ritual?
       </md-slide-toggle>
       <md-input-container color="accent" style="width:100%">
         <input mdInput placeholder="Duration:" formControlName="duration" required>
       </md-input-container>
-      <md-slide-toggle [color]="accent" formControlName="concentration">
+      <md-slide-toggle color="accent" formControlName="concentration">
         Concentration?
       </md-slide-toggle>
       <md-input-container color="accent" style="width:100%">
@@ -78,9 +77,6 @@
     <button md-raised-button color="primary" *ngIf="!readonly">Submit</button>
     <button md-raised-button type="button" color="primary" (click)="readonly = false" *ngIf="readonly && auth.authenticated()">Edit</button>
     <button md-raised-button type="button" color="warn" (click)="readonly = true" *ngIf="!readonly">Cancel Editing</button>
-    <button md-raised-button type="button" color="primary" (click)="add()" *ngIf="selectedSpellbook?.spellbookId && !isSelected()">Add</button>
-    <button md-raised-button type="button" color="warn" (click)="remove()" *ngIf="isSelected()">Remove</button>
-    <button md-raised-button type="button" md-dialog-close color="accent">Close</button>
   </div>
 </form>
 
