@@ -19,6 +19,7 @@
     <button md-raised-button color="primary" (click)="nav('login')" *ngIf="!auth.authenticated()">Log In</button>
     <button md-raised-button color="primary" (click)="nav('spellbooks')" *ngIf="auth.authenticated()"> My Characters </button>    <br />
     <button md-raised-button color="primary" (click)="nav('logout')" *ngIf="auth.authenticated()">Log Out</button>
+    <span>v1.0.0.1</span>
   </md-sidenav>
 
   <router-outlet></router-outlet>
