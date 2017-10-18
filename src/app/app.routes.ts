@@ -11,6 +11,7 @@ import { SpellbookListComponent } from './spellbook/spellbook-list/spellbook-lis
 const appRoutes: Routes = [
   { path: '', redirectTo: 'spells', pathMatch: 'full' },
   { path: 'spells', component: SpellsComponent },
+  { path: 'spells/:id', component: SpellsComponent },
   { path: 'character/:id', component: CharacterSheetComponent },
   {
     path: 'spellbooks',

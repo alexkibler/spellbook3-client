@@ -21,8 +21,9 @@ export class AppComponent {
   }
 
   public login() {
-    this.router.navigateByUrl('/');
-    this.auth.login();
+    this.router.navigateByUrl('/').then(() => {
+      setTimeout(() => this.auth.login(), 500);
+    });
   }
 
   public nav(func: string) {

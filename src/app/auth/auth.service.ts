@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
 import { myConfig } from './auth.config';
 
@@ -20,7 +21,7 @@ export class Auth {
     }
   });
 
-  constructor() {
+  constructor(private router: Router) {
     // Set userProfile attribute of already saved profile
     this.userProfile = JSON.parse(localStorage.getItem('profile'));
     this.token = localStorage.getItem('id_token');

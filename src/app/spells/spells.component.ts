@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MdDialog } from '@angular/material';
 import * as _ from 'lodash';
 import { SpellbookService } from '../shared/spellbook.service';
@@ -14,6 +15,7 @@ export class SpellsComponent implements OnInit {
   public sortOrder = 'name';
   public sortAsc = true;
   public spellbookOnly = false;
+  public id: number;
   private temp: any[];
   private nameFilter: string;
   private classFilter: string;
@@ -26,9 +28,15 @@ export class SpellsComponent implements OnInit {
     { name: 'class' }
   ];
 
-  constructor(private spellbookService: SpellbookService, public dialog: MdDialog) { }
+  constructor(
+    private spellbookService: SpellbookService,
+    public dialog: MdDialog,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.id = +this.route.snapshot.params['id'];
     this.getSpells();
     this.selectedSpellbook = this.spellbookService.selectedSpellbook.getValue();
     this.spellbookService.selectedSpellbook.subscribe(x => {
@@ -41,6 +49,9 @@ export class SpellsComponent implements OnInit {
       this.spells = s;
       this.temp = [...s];
       this.sort();
+      if (this.id) {
+        this.onSelect(s.find(x => x.id === this.id));
+      }
     });
   }
 
@@ -56,13 +67,13 @@ export class SpellsComponent implements OnInit {
   }
 
   onSelect(spell) {
+    this.router.navigateByUrl('spells/' + spell.id);
     const sub = this.spellbookService.getSpell(spell.id).subscribe(x => {
       const dialogRef = this.dialog.open(SpellDetailDialogComponent, { width: '75%' });
       dialogRef.componentInstance.spell = x;
       sub.unsubscribe();
       const sub2 = dialogRef.afterClosed().subscribe(r => {
         sub.unsubscribe();
-        this.getSpells();
       });
     });
   }
