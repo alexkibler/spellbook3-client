@@ -1,5 +1,5 @@
 <div style="margin:15px;" fxLayout="row" fxLayoutGap="10px">
-  <div [fxHide.xs]="spell" fxFlex="50%" fxFlex.xs="100%">
+  <div [fxHide.xs]="spell" [fxFlex]="spell ? '50%' : '100%'" fxFlex.xs="100%">
     <h2 *ngIf="selectedSpellbook?.name">Selected: {{selectedSpellbook?.name}}</h2>
     <md-slide-toggle class="example-margin" #toggle (change)="filter('sbOnly', toggle.checked)" *ngIf="selectedSpellbook?.spells?.length > 0">
       Show selected spells only?
@@ -82,7 +82,7 @@
 
   <div *ngIf="spell" fxFlex="50%" fxFlex.xs="100%">
     <div>
-      <button md-mini-fab class="spell-fab" (click)="spell = undefined" color="warn">
+      <button md-mini-fab class="spell-fab" (click)="resetSpell()" color="warn">
         <md-icon>close</md-icon>
       </button>
       <app-spell-detail [spell]="spell"></app-spell-detail>

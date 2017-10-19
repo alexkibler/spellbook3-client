@@ -30,7 +30,7 @@ export class AppComponent {
     this.sidenav.close().then(() => {
       switch (func) {
         case 'spells':
-          this.router.navigateByUrl('/spells');
+          this.router.navigate(['/spells/', '']);
           break;
         case 'spellbooks':
           this.router.navigateByUrl('/spellbooks/list');

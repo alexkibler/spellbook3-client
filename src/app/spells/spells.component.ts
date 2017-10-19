@@ -68,7 +68,7 @@ export class SpellsComponent implements OnInit {
   }
 
   onSelect(spell) {
-    this.router.navigateByUrl('spells/' + spell.id);
+    this.router.navigate(['/spells', spell.id]);
     const sub = this.spellbookService.getSpell(spell.id).subscribe(x => {
       this.spell = x;
       window.scrollTo(0,0);
@@ -135,6 +135,11 @@ export class SpellsComponent implements OnInit {
       this.sort();
     }
 
+  }
+
+  resetSpell() {
+    this.spell = undefined;
+    this.router.navigate(['/spells', '']);
   }
 
   sort() {
